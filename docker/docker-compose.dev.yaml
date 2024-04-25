@@ -1,0 +1,29 @@
+version: '3'
+
+name: ha-analytics
+services:
+  database:
+    image: postgres:16.2
+    
+    environment:
+      POSTGRES_PASSWORD: temp
+    volumes:
+      - ../database/data:/var/lib/postgresql/data
+      - ../database/db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - data-dev
+    restart: unless-stopped
+    ports:
+      - 9009:5432
+
+  adminer:
+    image: adminer
+    restart: unless-stopped
+    ports:
+      - 9008:8080
+    networks:
+      - data-dev
+   
+networks:
+  data-dev:
+  
