@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 // const { readUserByUsername} = require('../services/userService');
 // const { createSession } = require('../services/sessionService');
 
-const loginUser = async (req, res, next) => {
+const login = async (req, res, next) => {
   // TODO: validate input, enable password check
 
   const foundUser = await readUserByUsername(username)
@@ -33,5 +33,5 @@ const loginUser = async (req, res, next) => {
 
 
 module.exports = {
-  loginUser
+  login
 }
