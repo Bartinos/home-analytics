@@ -6,6 +6,7 @@ const { createSession } = require('../services/sessionService');
 
 const login = async (req, res, next) => {
   // TODO: validate input, enable password check
+  const username = req.body.username;
 
   const foundUser = await readUserByUsername(username)
 

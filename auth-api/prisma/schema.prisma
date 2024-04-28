@@ -8,15 +8,15 @@ datasource db {
 }
 
 model active_session {
-  id        Int     @id @default(autoincrement())
-  person_id Int?
-  token     String? @db.VarChar
-  person    person? @relation(fields: [person_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  id        Int    @id @default(autoincrement())
+  person_id Int
+  token     String @unique @db.VarChar
+  person    person @relation(fields: [person_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 
 model person {
   id             Int              @id @default(autoincrement())
-  username       String?          @db.VarChar
-  password       String?          @db.VarChar
+  username       String           @unique @db.VarChar
+  password       String           @db.VarChar
   active_session active_session[]
 }

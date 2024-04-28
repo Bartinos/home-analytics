@@ -15,7 +15,7 @@ async function createSession(token, userId) {
   const sessionResult = await prisma.active_session.create({
     data: {
       token: token,
-      user_id: Number(userId)
+      person_id: Number(userId)
     }
   });
 
