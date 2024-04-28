@@ -9,10 +9,10 @@ app.use(cors())
 
 // Routes
 const loginRoute = require('./routes/login')
-// const tokenRoute = require('./routes/token')
+const tokenRoute = require('./routes/token')
 const logoutRoute = require('./routes/logout')
 app.use("/login", loginRoute)
-// app.use("/tokens", tokenRoute)
+app.use("/token", tokenRoute)
 app.use("/logout", logoutRoute)
 
 function logEndpoint(req, res, next) {
