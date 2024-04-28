@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const tokenGenerator = require('../utils/tokenGenerator');
 const bcrypt = require('bcrypt');
-// const { readUserByUsername} = require('../services/userService');
-// const { createSession } = require('../services/sessionService');
+const { readUserByUsername} = require('../services/userService');
+const { createSession } = require('../services/sessionService');
 
 const login = async (req, res, next) => {
   // TODO: validate input, enable password check
@@ -15,7 +15,7 @@ const login = async (req, res, next) => {
   }
 
   // Check if provided password matches the password in database
-  if(await bcrypt.compare(req.body.password, foundUser.password) == false){ 
+  if(bcrypt.compareSync(req.body.password, foundUser.password) == false){ 
     return res.status(404).send({ errorMessage: "Could not find user matching the provided credentials."});
   }
 
