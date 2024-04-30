@@ -11,14 +11,6 @@ CREATE TABLE active_session (
   FOREIGN KEY (person_id) REFERENCES person (id)
 );
 
-CREATE TABLE measurement (
-  id SERIAL PRIMARY KEY,
-  topic_id INTEGER NOT NULL,
-  value FLOAT NOT NULL,
-  created_at TIMESTAMP NOT NULL,
-  FOREIGN KEY (topic_id) REFERENCES topic (id)
-);
-
 CREATE TABLE topic (
   id SERIAL PRIMARY KEY,
   country VARCHAR NOT NULL,
@@ -28,5 +20,14 @@ CREATE TABLE topic (
   sensor VARCHAR NOT NULL,
   UNIQUE(country, city, building, space, sensor)
 );
+
+CREATE TABLE measurement (
+  id SERIAL PRIMARY KEY,
+  topic_id INTEGER NOT NULL,
+  value FLOAT NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  FOREIGN KEY (topic_id) REFERENCES topic (id)
+);
+
 
 
