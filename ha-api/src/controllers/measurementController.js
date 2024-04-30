@@ -1,8 +1,7 @@
-const { PrismaClient } = require('@prisma/client')
-const prisma = new PrismaClient()
-
+const { readAllMeasurements } = require('../services/measurementService')
 const getAllMeasurements = async (req, res, next) => {
-  return res.status(200).json()
+  const allMeasurements = await readAllMeasurements();
+  return res.status(200).json(allMeasurements)
 }
 
 module.exports = {
