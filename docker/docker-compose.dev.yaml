@@ -1,6 +1,11 @@
 version: '3'
 
 name: ha-analytics
+
+networks:
+  data-dev:
+  tunneled-dev:
+
 services:
   database:
     image: postgres:16.2
@@ -23,7 +28,14 @@ services:
       - 9008:8080
     networks:
       - data-dev
-   
-networks:
-  data-dev:
-  
+  mqtt-broker:
+    image: eclipse-mosquitto:2.0.18
+    ports:
+      - 1883:1883
+    volumes:
+      - ../mqtt-broker/mosquitto/log:/mosquitto/log
+      - ../mqtt-broker/mosquitto/data:/mosquitto/data
+      - ../mqtt-broker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    networks:
+      - tunneled-dev
+    restart: unless-stopped
