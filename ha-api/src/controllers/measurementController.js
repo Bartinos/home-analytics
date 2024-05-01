@@ -1,10 +1,12 @@
-const { readAllMeasurements, createMeasurement } = require('../services/measurementService');
+const { readMeasurements, createMeasurement } = require('../services/measurementService');
 const { readTopicByMatchingValues, createTopic } = require('../services/topicService');
+const WEEK_IN_SECONDS = 604800
 
-
-const getAllMeasurements = async (req, res, next) => {
-  const allMeasurements = await readAllMeasurements();
-  return res.status(200).json(allMeasurements)
+const getMeasurements = async (req, res, next) => {
+  // If no `since` param has been set, then take the timestamp in miliseconds from one week ago 
+  const afterTimestamp = req.query.since? req.query.since * 1000 : (Date.now() - (WEEK_IN_SECONDS * 1000))
+  const measurements = await readMeasurements(afterTimestamp)
+  return res.status(200).json(measurements)
 }
 
 const postMeasurement = async (req, res, next) => {
@@ -27,6 +29,6 @@ const postMeasurement = async (req, res, next) => {
 }
 
 module.exports = {
-  getAllMeasurements,
+  getMeasurements,
   postMeasurement
 }

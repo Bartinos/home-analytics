@@ -1,10 +1,16 @@
 const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
-async function readAllMeasurements() {
+async function readMeasurements(afterTimestamp) {
   const result = await prisma.measurement.findMany({
+    where: {
+      created_at: { gt: new Date(afterTimestamp).toISOString() }
+    },
     include: {
       topic: true
+    },
+    orderBy: {
+      created_at: 'desc'
     }
   })
 
@@ -24,6 +30,6 @@ async function createMeasurement(topicId, value){
 }
 
 module.exports = {
-  readAllMeasurements,
+  readMeasurements,
   createMeasurement
 }
