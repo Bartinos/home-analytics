@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 
 const measurementRoute = require('./routes/measurement')
 const topicRoute = require('./routes/topic')
