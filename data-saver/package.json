@@ -1,0 +1,11 @@
+{
+  "name": "data-saver",
+  "version": "1.0.0",
+  "description": "Takes mqtt data as an input and stores it into the database through a REST-api\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
