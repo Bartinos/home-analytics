@@ -2,10 +2,19 @@
   "name": "data-saver",
   "version": "1.0.0",
   "description": "Takes mqtt data as an input and stores it into the database through a REST-api\"",
-  "main": "index.js",
+  "main": "src/saver.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start": "tsc && node ./dist/saver.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.12.9",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "mqtt": "^5.5.5"
+  }
 }
