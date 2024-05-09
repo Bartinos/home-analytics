@@ -13,6 +13,11 @@ function parseAv1(topic, message) {
   return isValidAv1Format;
 }
 
+function parseAv1Topic(topic) {
+  return undefined;
+}
+
 exports = {
-  parseAv1
+  parseAv1,
+  parseAv1Topic
 }
