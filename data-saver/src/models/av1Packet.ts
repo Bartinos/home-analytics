@@ -1,6 +1,6 @@
 export interface Av1Packet {
   value: any,
-  datatype: string,
+  type: string,
   timestamp: number
 };
 
