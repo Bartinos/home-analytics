@@ -6,15 +6,13 @@ let client = mqtt.connect("mqtt://localhost:1883"); // create a client
 
 client.on("connect", () => {
   client.subscribe(MQTT_OLD_TOPIC, (err) => {
-    if (!err) {
+    if (err) {
+      console.error(`Could not connect to MQTT-broker: ${err}`);
     }
   });
-
 });
 
 client.on("message", (topic, message) => {
-  // message is Buffer
-  console.log(topic);
-  console.log(message.toString());
-  // client.end();
+  console.log(`Message received on topic: ${topic.toString()}`);
+  console.log(`Body: \n${message.toString()}`);
 });
