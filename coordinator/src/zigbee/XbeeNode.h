@@ -11,7 +11,7 @@ public:
   String identifier;
   byte mac[8]; 
   Av1Sensor *sensor;
-  
+  bool compareMac(byte otherMac[8]);
 private:
 };
 

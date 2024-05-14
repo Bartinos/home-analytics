@@ -5,6 +5,7 @@
 class LdrSensor : public Av1Sensor
 {
 public:
-    float parseReadingIntoMeasurement() override;
+    float parseReadingIntoMeasurement(int reading
+) override;
   };
 #endif // !LDR_SENSOR_H

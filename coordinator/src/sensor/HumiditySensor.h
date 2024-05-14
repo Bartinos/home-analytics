@@ -4,7 +4,8 @@
 
 class HumiditySensor : public Av1Sensor {
   public:
-     float parseReadingIntoMeasurement() override; 
+     float parseReadingIntoMeasurement(int reading
+) override; 
 };
 
 #endif // !HUMIDITY_SENSOR_H
