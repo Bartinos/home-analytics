@@ -6,11 +6,11 @@ class EthernetController
 {
 
 public:
-
+    EthernetController(EthernetClient *ethernetClient);
     void setupNetworkInterface();
     bool getNIStatus();
 private:
-    EthernetClient ethClient;
+    EthernetClient *ethClient;
     byte mac[6] = {
       0x90, 0xA2, 0xDA, 0x0F, 0x08, 0x03
     };

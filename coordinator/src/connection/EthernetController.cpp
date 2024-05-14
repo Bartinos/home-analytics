@@ -1,5 +1,8 @@
 #include "EthernetController.h"
 
+EthernetController::EthernetController(EthernetClient *ethernetClient) : ethClient(ethernetClient) {
+}
+
 void EthernetController::setupNetworkInterface(){
   
   while (!Serial) {
