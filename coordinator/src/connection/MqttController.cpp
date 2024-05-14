@@ -28,5 +28,14 @@ void MqttController::setupMqttConnection(){
 }
 
 bool MqttController::getMqttConnectionStatus(){
-  return 1;
+    if (mqttClient->connected() == false)
+    {
+        Serial.println("Mqtt connection lost");
+        return false;
+    }
+    return true;
+}
+
+void MqttController::loop(){
+  this->mqttClient->loop();
 }

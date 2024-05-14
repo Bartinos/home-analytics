@@ -20,6 +20,7 @@ void setup() {
 }
 
 void loop() {
-  bool mS = mqttController->getMqttConnectionStatus();
-  Serial.println(mS);
+  mqttController->loop();
+  // bool mS = mqttController->getMqttConnectionStatus();
+  // Serial.println(mS);
 }

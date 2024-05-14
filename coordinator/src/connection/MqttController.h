@@ -10,7 +10,7 @@ public:
     MqttController(EthernetClient *ethernetClient);
     void setupMqttConnection();
     bool getMqttConnectionStatus();
-    
+    void loop(); 
 private:
     PubSubClient *mqttClient; 
 };
