@@ -1,3 +1,6 @@
+#ifndef XBEE_NODE_H
+#define XBEE_NODE_H
+
 #include "Arduino.h"
 #include "sensor/Av1Sensor.h"
 
@@ -13,3 +16,4 @@ private:
 };
 
 
+#endif // !XBEE_NODE_H
