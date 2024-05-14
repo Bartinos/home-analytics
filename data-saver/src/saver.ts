@@ -10,6 +10,7 @@ client.on("connect", () => {
   client.subscribe(MQTT_OLD_TOPIC, (err) => {
     if (err) {
       console.error(`Could not subscribe to topic: ${err}`);
+      
     }
   });
 });
