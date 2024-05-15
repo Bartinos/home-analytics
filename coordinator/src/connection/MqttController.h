@@ -12,7 +12,7 @@ public:
     void setupMqttConnection();
     bool getMqttConnectionStatus();
     void loop(); 
-    void sendMqttPacket(String topic, StaticJsonDocument<100> json);
+    void sendMqttPacket(String topic, StaticJsonDocument<60> json);
 private:
     PubSubClient *mqttClient; 
 };

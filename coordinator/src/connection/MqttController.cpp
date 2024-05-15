@@ -17,7 +17,8 @@ void MqttController::setupMqttConnection(){
     if (mqttClient->connect(CLIENT_ID))
     {
         // Serial.println(mqttClient.state()); //  will provide more information
-        mqttClient->setBufferSize(2048);
+        
+        // mqttClient->setBufferSize(2048);
     }
     else
     {
@@ -40,10 +41,10 @@ void MqttController::loop(){
   this->mqttClient->loop();
 }
 
-void MqttController::sendMqttPacket(String topic, StaticJsonDocument<100> json){
-  char buffer[100];
+void MqttController::sendMqttPacket(String topic, StaticJsonDocument<60> json){
+  char buffer[60];
   serializeJson(json, buffer);
   Serial.println(buffer);
   // // client.publish("topic", buffer);
-  this->mqttClient->publish("tsttt", buffer);
+  this->mqttClient->publish(topic.c_str(), buffer);
 }

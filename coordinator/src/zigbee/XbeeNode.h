@@ -7,12 +7,14 @@
 class XbeeNode{
 
 public:
-  XbeeNode(String identifier, byte mac[8], Av1Sensor *sensor);
+  XbeeNode(String identifier, String space, byte mac[8], Av1Sensor *sensor);
   String identifier;
   byte mac[8]; 
   Av1Sensor *sensor;
-  bool compareMac(byte otherMac[8]);
+  bool compareMac(const byte otherMac[8]);
+  String getTopic();
 private:
+  String space;
 };
 
 
