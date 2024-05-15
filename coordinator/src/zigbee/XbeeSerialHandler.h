@@ -13,9 +13,17 @@
 
 class XbeeSerialHandler {
   public:
+    struct XbeeReading
+    {
+        byte mac[8];
+        int analogReading;
+        
+    };
     XbeeSerialHandler(std::vector<XbeeNode> &xbeeNodes);
     std::vector<XbeeNode>& xbeeNodes;
-    void handleSerial();
+    bool isFrameAvailable();
+    XbeeReading createReadingFromSerial();
+
 private:
 };
 

@@ -50,5 +50,8 @@ void setup() {
 
 void loop() {
   mqttController->loop();
-  xbeeSerialHandler->handleSerial();
+  if(xbeeSerialHandler->isFrameAvailable()){
+    XbeeSerialHandler::XbeeReading xbeeReading = xbeeSerialHandler->createReadingFromSerial();
+    Serial.println(xbeeReading.analogReading);
+  }
 }
