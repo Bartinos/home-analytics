@@ -6,7 +6,7 @@ XbeeReadingToMqttController::XbeeReadingToMqttController(MqttController *mqttCon
 
 void XbeeReadingToMqttController::xbeeReadingToMqtt(XbeeReading xbeeReading){
   float measurement;
-  JsonDocument av1Payload;
+  StaticJsonDocument<100> av1Payload;
 
   for(auto xbeeNode: this->xbeeNodes){
     if (xbeeNode.compareMac(xbeeReading.mac)){
@@ -25,11 +25,11 @@ void XbeeReadingToMqttController::xbeeReadingToMqtt(XbeeReading xbeeReading){
       Serial.println(sensorName);
       Serial.println();
       // Populate json to send over mqtt
-      av1Payload["type"] = xbeeNode.sensor->getType();
-      av1Payload["value"] = measurement;
+      av1Payload["type"] = String(xbeeNode.sensor->getType());
+      av1Payload["value"] = String(measurement);
       // av1Payload["timestamp"]
-      //
-      // this->mqttController->sendMqttPacket("testtest", av1Payload);
+
+      this->mqttController->sendMqttPacket("testtest", av1Payload);
       return;
     }
   }

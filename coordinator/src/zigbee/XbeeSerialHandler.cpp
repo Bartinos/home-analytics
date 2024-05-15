@@ -1,5 +1,4 @@
 #include "XbeeSerialHandler.h"
-#include "HardwareSerial.h"
 
 XbeeSerialHandler::XbeeSerialHandler()  {
 }

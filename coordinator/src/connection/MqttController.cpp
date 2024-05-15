@@ -40,9 +40,10 @@ void MqttController::loop(){
   this->mqttClient->loop();
 }
 
-void MqttController::sendMqttPacket(String topic, JsonDocument json){
-  // char buffer[256];
-  // serializeJson(json, buffer);
+void MqttController::sendMqttPacket(String topic, StaticJsonDocument<100> json){
+  char buffer[100];
+  serializeJson(json, buffer);
+  Serial.println(buffer);
   // // client.publish("topic", buffer);
-  // this->mqttClient->publish("tsttt", buffer);
+  this->mqttClient->publish("tsttt", buffer);
 }
