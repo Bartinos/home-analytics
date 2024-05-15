@@ -5,6 +5,7 @@
 #include "XbeeNode.h"
 #include <StandardCplusplus.h>
 #include <vector>
+#include "XbeeReading.h"
 #include "../sensor/TemperatureSensor.h"
 
 #define ZIGBEE_FRAME_SIZE 21
@@ -13,14 +14,7 @@
 
 class XbeeSerialHandler {
   public:
-    struct XbeeReading
-    {
-        byte mac[8];
-        int analogReading;
-        
-    };
-    XbeeSerialHandler(std::vector<XbeeNode> &xbeeNodes);
-    std::vector<XbeeNode>& xbeeNodes;
+    XbeeSerialHandler();
     bool isFrameAvailable();
     XbeeReading createReadingFromSerial();
 

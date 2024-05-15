@@ -1,7 +1,7 @@
 #include "XbeeSerialHandler.h"
 #include "HardwareSerial.h"
 
-XbeeSerialHandler::XbeeSerialHandler(std::vector<XbeeNode> &xbeeNodes) : xbeeNodes(xbeeNodes) {
+XbeeSerialHandler::XbeeSerialHandler()  {
 }
 
 bool XbeeSerialHandler::isFrameAvailable(){
@@ -15,7 +15,7 @@ bool XbeeSerialHandler::isFrameAvailable(){
   
 }
 
-XbeeSerialHandler::XbeeReading XbeeSerialHandler::createReadingFromSerial(){
+XbeeReading XbeeSerialHandler::createReadingFromSerial(){
   // byte receivedMac[8];
   int analogMSB;
   int analogLSB;
@@ -42,25 +42,6 @@ XbeeSerialHandler::XbeeReading XbeeSerialHandler::createReadingFromSerial(){
     }
 
     xbeeReading.analogReading = analogLSB + (analogMSB * 256);
-    // float measurement;
 
     return xbeeReading;
-    // for(auto xbeeNode: this->xbeeNodes){
-    //   if (xbeeNode.compareMac(receivedMac)){
-    //     Serial.print("Received data from: ");
-    //     Serial.println(xbeeNode.identifier);
-    //
-    //     float reading = xbeeNode.sensor->parseReadingIntoMeasurement(analogReading);
-    //     if(reading == INVALID_READING){
-    //       Serial.println("Invalid reading");
-    //       return;
-    //     }
-    //     measurement = reading;
-    //     Serial.println(measurement);
-    //     Serial.println();
-    //
-    //     return;
-    //   }
-    // }
-  
 }

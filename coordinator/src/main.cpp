@@ -3,17 +3,12 @@
 #include <vector>
 #include "connection/EthernetController.h"
 #include "connection/MqttController.h"
-#include "sensor/HumiditySensor.h"
 #include "sensor/LdrSensor.h"
 #include "sensor/PotentiometerSensor.h"
 #include "sensor/TemperatureSensor.h"
 #include "zigbee/XbeeNode.h"
 #include "zigbee/XbeeSerialHandler.h"
-// Consider using shared pointer
-EthernetClient ethernetClient;
-EthernetController *ethernetController = new EthernetController(&ethernetClient);
-
-MqttController *mqttController = new MqttController(&ethernetClient);
+#include "zigbeeToMqtt/XbeeReadingToMqttController.h"
 
 // Initialize nodes
 
@@ -33,7 +28,15 @@ std::vector<XbeeNode> xbeeNodes ={
   router1
 };
 
-XbeeSerialHandler *xbeeSerialHandler = new XbeeSerialHandler(xbeeNodes);
+// Consider using shared pointer
+EthernetClient ethernetClient;
+EthernetController *ethernetController = new EthernetController(&ethernetClient);
+
+MqttController *mqttController = new MqttController(&ethernetClient);
+XbeeReadingToMqttController *xbeeReadingToMqttController = new XbeeReadingToMqttController(mqttController,xbeeNodes);
+
+
+XbeeSerialHandler *xbeeSerialHandler = new XbeeSerialHandler();
 
 void setup() {
   Serial.begin(9600);
@@ -51,7 +54,7 @@ void setup() {
 void loop() {
   mqttController->loop();
   if(xbeeSerialHandler->isFrameAvailable()){
-    XbeeSerialHandler::XbeeReading xbeeReading = xbeeSerialHandler->createReadingFromSerial();
-    Serial.println(xbeeReading.analogReading);
+    XbeeReading xbeeReading = xbeeSerialHandler->createReadingFromSerial();
+    xbeeReadingToMqttController->xbeeReadingToMqtt(xbeeReading);
   }
 }

@@ -11,6 +11,7 @@ public:
     void setupMqttConnection();
     bool getMqttConnectionStatus();
     void loop(); 
+    // void sendMqttPacket();
 private:
     PubSubClient *mqttClient; 
 };
