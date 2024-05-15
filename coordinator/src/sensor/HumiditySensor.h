@@ -3,9 +3,12 @@
 #include "Av1Sensor.h"
 
 class HumiditySensor : public Av1Sensor {
-  public:
-     float parseReadingIntoMeasurement(int reading
+public:
+  HumiditySensor();
+  float parseReadingIntoMeasurement(int reading
 ) override; 
+  String getSensorName() override; 
+  String getType() override;
 };
 
 #endif // !HUMIDITY_SENSOR_H

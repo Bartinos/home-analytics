@@ -6,6 +6,7 @@
 #include "connection/MqttController.h"
 #include <vector>
 #include "zigbee/XbeeReading.h"
+
 class XbeeReadingToMqttController {
 
 public:

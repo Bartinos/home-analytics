@@ -1,6 +1,19 @@
 #include "PotentiometerSensor.h"
 #include "Arduino.h"
 
+PotentiometerSensor::PotentiometerSensor(){
+  // this->type = "float";
+  // this->sensorName = "heaterKnobRotation";
+}
+
+String PotentiometerSensor::getType(){
+  return "float";
+}
+
+String PotentiometerSensor::getSensorName(){
+  return "heaterKnobRotation";
+}
+
 float PotentiometerSensor::parseReadingIntoMeasurement(int reading
 ){
   if(reading > 2000){

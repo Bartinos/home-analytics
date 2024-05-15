@@ -39,3 +39,10 @@ bool MqttController::getMqttConnectionStatus(){
 void MqttController::loop(){
   this->mqttClient->loop();
 }
+
+void MqttController::sendMqttPacket(String topic, JsonDocument json){
+  // char buffer[256];
+  // serializeJson(json, buffer);
+  // // client.publish("topic", buffer);
+  // this->mqttClient->publish("tsttt", buffer);
+}

@@ -7,6 +7,9 @@
 class TemperatureSensor : public Av1Sensor
 {
 public:
+    TemperatureSensor();
+    String getType() override;
+    String getSensorName() override; 
     float parseReadingIntoMeasurement(int reading
 ) override;
   };

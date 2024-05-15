@@ -1,5 +1,19 @@
 #include "TemperatureSensor.h"
 
+TemperatureSensor::TemperatureSensor(){
+  // Troubleshoot bad variables
+  // this->sensorName = "temperature";
+  // this->type = "float";
+}
+
+String TemperatureSensor::getType(){
+  return "float";
+}
+
+String TemperatureSensor::getSensorName(){
+  return "temperature";
+}
+
 float TemperatureSensor::parseReadingIntoMeasurement(int reading
 ){
   if(reading > 2000){

@@ -6,7 +6,10 @@
 class PotentiometerSensor : public Av1Sensor
 {
 public:
+    PotentiometerSensor();
     float parseReadingIntoMeasurement(int reading
 ) override;
+    String getSensorName() override; 
+    String getType() override;
   };
 #endif // !POTENTIOMETER_SENSOR_H

@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include <Config.h>
 #include <Ethernet.h>
+#include "ArduinoJson.h"
 class MqttController
 {
 
@@ -11,7 +12,7 @@ public:
     void setupMqttConnection();
     bool getMqttConnectionStatus();
     void loop(); 
-    // void sendMqttPacket();
+    void sendMqttPacket(String topic, JsonDocument json);
 private:
     PubSubClient *mqttClient; 
 };
