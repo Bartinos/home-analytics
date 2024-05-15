@@ -44,6 +44,7 @@ void XbeeSerialHandler::handleSerial(){
         measurement = reading;
         Serial.println(measurement);
         Serial.println();
+
         return;
       }
     }

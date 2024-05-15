@@ -12,6 +12,7 @@
 // Consider using shared pointer
 EthernetClient ethernetClient;
 EthernetController *ethernetController = new EthernetController(&ethernetClient);
+
 MqttController *mqttController = new MqttController(&ethernetClient);
 
 // Initialize nodes
@@ -44,7 +45,7 @@ void setup() {
     mqttController->setupMqttConnection();
   } while (mqttController->getMqttConnectionStatus() == false);
 
-  
+    
 }
 
 void loop() {
