@@ -1,0 +1,21 @@
+<section>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-container">
+
+    <div class="logo">
+      <img src="assets/icons/logo-and-text.png" alt="Logo of Home Analytics">
+    </div>
+    <div class="form-input-container">
+      <label>Username</label>
+      <input type="text" formControlName="username">
+      <!-- <label i18n class="val-label" *ngIf="message?.invalid && message?.touched"> -->
+      <!--   Message cannot me empty -->
+      <!-- </label> -->
+    </div>
+    <div class="form-input-container">
+      <label>Password</label>
+      <input type="password" formControlName="password">
+
+    </div>
+    <button class="login-button" type="submit">log in</button>
+  </form>
+</section>

@@ -1,0 +1,49 @@
+.auth-container {
+  translate: -50% -50%;
+  @apply w-9/12  absolute top-1/2 left-1/2
+}
+
+.auth-container  label {
+  @apply  mr-1 mb-1 text-sm text-off-black-text
+}
+
+.auth-container input {
+  @apply rounded-sm mb-2 py-1 bg-creamy-yellow-background
+}
+
+.form-input-container:last-of-type {
+  @apply mb-6
+}
+
+.form-input-container {
+  @apply flex flex-col
+}
+
+.login-button {
+  width: 100%;
+  @apply bg-primary-button text-white
+}
+
+.logo{
+  @apply mb-5
+}
+
+section {
+  /* min-height: 95vh; */
+  /* background: white; */
+
+}
+
+@media (min-width: 50em) {
+
+  .auth-container{
+  @apply w-80 p-8 rounded-sm bg-creamy-yellow-background
+  }
+
+  .auth-container  input {
+    /* background: black; */
+    /* @apply rounded-sm mb-2 py-1 */
+    @apply bg-input-label-on-creamy-yellow
+  }
+}
+
