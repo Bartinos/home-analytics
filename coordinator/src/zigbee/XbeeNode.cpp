@@ -24,7 +24,7 @@ String XbeeNode::getTopic(){
   // topic += "/";
   // topic += this->sensor->getSensorName();
   // Serial.println(topic);
-  return "hac1/breda/house/" + space + "/" + sensor->getSensorName();
+  return "hac1/breda/home/" + space + "/" + sensor->getSensorName();
   // return String(TOPIC_DATA_MEASUREMENT_PUB_PREFIX) + "/" + this->space + "/" + this->sensor->getSensorName();
   // return "test";
 }
