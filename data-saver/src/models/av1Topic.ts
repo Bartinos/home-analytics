@@ -28,17 +28,17 @@ export class Av1Topic {
 
   static fromSimplifiedTopicString(topic: string): Av1Topic {
     const CLIENT_ID_INDEX: number = 0;
-    const COUNTRY_INDEX: number = 1;
-    const CITY_INDEX: number = 2;
-    const BUILDING_INDEX: number = 3;
-    const SPACE_INDEX: number = 4;
-    const SENSOR_INDEX: number = 5;
+    // const COUNTRY_INDEX: number = 1;
+    const CITY_INDEX: number = 1;
+    const BUILDING_INDEX: number = 2;
+    const SPACE_INDEX: number = 3;
+    const SENSOR_INDEX: number = 4;
 
     const splitTopic: string[] = topic.split("/");
-    if (splitTopic.length != 6) return null;
+    if (splitTopic.length != 5) return null;
 
     const clientId: string = splitTopic[CLIENT_ID_INDEX];
-    const country: string = splitTopic[COUNTRY_INDEX];
+    const country: string = "netherlands";
     const city: string = splitTopic[CITY_INDEX];
     const building: string = splitTopic[BUILDING_INDEX];
     const space: string = splitTopic[SPACE_INDEX];

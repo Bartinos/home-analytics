@@ -1,23 +1,23 @@
-import { Av1Packet } from "../models/av1Packet.js";
-import { Av1Topic } from "../models/av1Topic.js";
 import { MeasurementRequestBody } from "../models/measurementRequestBody.js";
 
-const HEADERS = {
-  'Content-type': 'application/json; charset=UTF-8',
-};
-const API_URL = "localhost:3001";
-
 export async function postMeasurement(measurementRequestBody: MeasurementRequestBody) {
-  const response = await fetch(
-    API_URL + "/measurements",
-    {
-      method: 'POST', 
-      body: JSON.stringify(measurementRequestBody),
-      headers: HEADERS
-    }
-  );
-
-  const data = await response.json();
-  console.log(data);
-
+  let response = undefined;
+  try {
+    response = await fetch(
+      process.env.API_URL + "/measurements",
+      {
+        method: 'POST',
+        body: JSON.stringify(measurementRequestBody),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Bearer ' + process.env.ACCESS_TOKEN
+        }
+      }
+    );
+    console.log(response.status);
+  } catch (error) {
+    console.log("Failed to send fetch request");
+    console.error(error);
+  }
+  console.log();
 }

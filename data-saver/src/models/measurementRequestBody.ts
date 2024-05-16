@@ -45,7 +45,7 @@ export interface MeasurementRequestBody {
 
 
 export function measurementRequestBodyFromAv1PacketAndAv1Topic(av1Packet: Av1Packet, av1Topic: Av1Topic): MeasurementRequestBody {
-    const timestamp: number = av1Packet.timestamp? av1Packet.timestamp : null;
+    // const timestamp: number = av1Packet.timestamp;
     const measurementRequestBody: MeasurementRequestBody = {
       country: av1Topic.country,
       city: av1Topic.city,
@@ -53,7 +53,7 @@ export function measurementRequestBodyFromAv1PacketAndAv1Topic(av1Packet: Av1Pac
       space: av1Topic.space,
       sensor: av1Topic.sensor,
       value: av1Packet.value,
-      timestamp
+      // timestamp
     };
     return measurementRequestBody;
   }
