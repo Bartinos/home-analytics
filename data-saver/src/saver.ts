@@ -4,14 +4,15 @@ env.config({path: "./.env"});
 import mqtt from "mqtt"; // import namespace "mqtt"
 import { sendMeasurement } from './controllers/measurementController.js';
 import { Av1Topic } from "./models/av1Topic.js";
-const MQTT_SIMPLIFIED_AV1_TOPIC = "+/breda/home/#";
-// const MQTT_OLD_TOPIC = "home/livingroom/#";
-let client = mqtt.connect("mqtt://localhost:1883"); // create a client
 
-if (!process.env.ACCESS_TOKEN || !process.env.API_URL){
+if (!process.env.ACCESS_TOKEN || !process.env.API_URL || !process.env.MQTT_BROKER_URL){
   console.error("Crucial environment variable(s) not defined, aborting...");
   exit();
 }
+
+const MQTT_SIMPLIFIED_AV1_TOPIC = "+/breda/home/#";
+// const MQTT_OLD_TOPIC = "home/livingroom/#";
+let client = mqtt.connect(process.env.MQTT_BROKER_URL); // create a client
 
 client.on("connect", () => {
   client.subscribe(MQTT_SIMPLIFIED_AV1_TOPIC, (err) => {
