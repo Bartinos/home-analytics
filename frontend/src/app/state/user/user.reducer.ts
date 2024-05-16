@@ -1,7 +1,8 @@
 import { createReducer, on } from "@ngrx/store"
-import { loginUser } from "./actions"
+import { loginUser } from "./user.actions"
 
 export interface UserState {
+  username: string,
   isSubmittingLogin: boolean,
   error: string,
   status: 'pending' | 'loading' | 'error' | 'success'
@@ -9,6 +10,7 @@ export interface UserState {
 }
 
 const initialState: UserState = {
+  username: 'undefined',
   isSubmittingLogin: false,
   error: '',
   status: 'pending'

@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../models/loginRequest.interface';
-import { loginUser } from '../../state/user/actions';
+import { loginUser } from '../../state/user/user.actions';
 import { Store } from '@ngrx/store';
 
 @Component({
