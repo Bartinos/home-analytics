@@ -8,7 +8,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { userReducer } from './state/user/user.reducer';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideStore({user: userReducer}) , provideEffects(), provideStoreDevtools({
+  providers: [provideRouter(routes), provideStore({userState: userReducer}) , provideEffects(), provideStoreDevtools({
     maxAge: 25, logOnly: !isDevMode(), trace: false,
     traceLimit: 75, autoPause: true
   })]

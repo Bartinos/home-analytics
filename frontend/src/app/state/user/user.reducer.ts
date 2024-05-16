@@ -9,7 +9,7 @@ export interface UserState {
   // user: UserState;
 }
 
-const initialState: UserState = {
+export const initialUserState: UserState = {
   username: 'undefined',
   isSubmittingLogin: false,
   error: '',
@@ -17,9 +17,10 @@ const initialState: UserState = {
 }
 
 export const userReducer = createReducer(
-  initialState,
+  initialUserState,
   on(loginUser, (state) => ({
     ...state,
-    isSubmittingLogin: true
+    isSubmittingLogin: true,
+    status: 'loading' as const
   }))
 )

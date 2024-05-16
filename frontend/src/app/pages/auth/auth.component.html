@@ -16,6 +16,9 @@
       <input type="password" formControlName="password">
 
     </div>
-    <button class="login-button" type="submit">log in</button>
+    <button class="login-button" type="submit" [disabled]="(isSubmitting$ | async)">
+      <p *ngIf="!(isSubmitting$ | async)">log in</p>
+      <div *ngIf="(isSubmitting$ | async)" class="loader"></div>
+    </button>
   </form>
 </section>

@@ -5,9 +5,9 @@ import { UserState } from "./user.reducer";
 export const selectUserState = (state: AppState) => state.userState;
 export const selectUsername = createSelector(
   selectUserState,
-  (state: UserState) => state.username
+  (userState: UserState) => userState.username
 )
 export const selectIsSubmittingLogin = createSelector(
   selectUserState,
-  (state: UserState) => state.isSubmittingLogin
+  (userState: UserState) => userState.isSubmittingLogin
 )

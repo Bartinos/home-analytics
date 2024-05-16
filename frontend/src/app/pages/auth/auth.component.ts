@@ -4,11 +4,15 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../../models/loginRequest.interface';
 import { loginUser } from '../../state/user/user.actions';
 import { Store } from '@ngrx/store';
+import { selectIsSubmittingLogin } from '../../state/user/user.selectors';
+import { CommonModule } from '@angular/common';
+import { UserState } from '../../state/user/user.reducer';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.css'
 })
@@ -16,10 +20,12 @@ export class AuthComponent implements OnInit {
 
   public loginForm!: FormGroup;
   private router = inject(Router);
-  private store = inject(Store);
+  private store: Store<{userState: UserState}> = inject(Store);
   // Form state
-  public mailErrorMessage: string = '';
-  errorMessage: string = '';
+  // public mailErrorMessage: string = '';
+  // errorMessage: string = '';
+  isSubmitting$: Observable<boolean> = this.store.select(selectIsSubmittingLogin);
+
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
     this.loginForm = this.fb.group({
@@ -37,6 +43,6 @@ export class AuthComponent implements OnInit {
   // Send Login form
   public onSubmit() {
     const request: LoginRequest = this.loginForm.getRawValue();
-    this.store.dispatch(loginUser({request}));
+    this.store.dispatch(loginUser({ request }));
   }
 }

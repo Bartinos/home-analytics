@@ -21,7 +21,7 @@
 
 .login-button {
   width: 100%;
-  @apply bg-primary-button text-white
+  @apply bg-primary-button text-white h-10
 }
 
 .logo{
@@ -32,6 +32,22 @@ section {
   /* min-height: 95vh; */
   /* background: white; */
 
+}
+
+.loader {
+    animation: loading-animation 1s ease infinite;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #fff;
+    @apply pointer-events-none w-7 h-7 mx-auto
+}
+@keyframes loading-animation {
+    0% {
+      transform: rotate(0turn);
+    }
+    100% {
+      transform: rotate(1turn);
+    }
 }
 
 @media (min-width: 50em) {
