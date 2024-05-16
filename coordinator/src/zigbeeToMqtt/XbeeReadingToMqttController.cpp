@@ -1,34 +1,37 @@
 #include "XbeeReadingToMqttController.h"
+#include "sensor/LdrSensor.h"
+#include "sensor/PotentiometerSensor.h"
+#include "sensor/TemperatureSensor.h"
 
-XbeeReadingToMqttController::XbeeReadingToMqttController(MqttController *mqttController, std::vector<XbeeNode> &xbeeNodes) : xbeeNodes(xbeeNodes){
+XbeeReadingToMqttController::XbeeReadingToMqttController(MqttController *mqttController){
   this->mqttController = mqttController;
 }
 
 void XbeeReadingToMqttController::xbeeReadingToMqtt(XbeeReading xbeeReading){
-  float measurement;
-  StaticJsonDocument<60> av1Payload;
+  StaticJsonDocument<20> av1Payload;
 
-  for(auto xbeeNode: this->xbeeNodes){
+  // Initialize nodes
+
+
+  for(int i = 0; i < 3; i ++){
+    XbeeNode xbeeNode = xbeeNodes[i];
     if (xbeeNode.compareMac(xbeeReading.mac)){
-      Serial.print("Received data from: ");
+      // Serial.print("M: ");
       Serial.println(xbeeNode.identifier);
 
       float reading = xbeeNode.sensor->parseReadingIntoMeasurement(xbeeReading.analogReading);
-      if(reading == INVALID_READING){
-        Serial.println("Invalid reading");
-        return;
-      }
-      measurement = reading;
-      Serial.println(measurement);
-      String sensorName = xbeeNode.sensor->getSensorName();
-      Serial.println(sensorName);
-      Serial.println();
+      // if(reading == INVALID_READING){
+      //   Serial.println("Invalid reading");
+      //   return;
+      // }
+
       // Populate json to send over mqtt
-      av1Payload["type"] = String(xbeeNode.sensor->getType());
-      av1Payload["value"] = String(measurement);
+      // av1Payload["type"] = String(xbeeNode.sensor->getType());
+      av1Payload["value"] = reading;
       // av1Payload["timestamp"]
 
-      this->mqttController->sendMqttPacket(xbeeNode.getTopic(), av1Payload);
+      this->mqttController->sendMqttPacket(xbeeNode.getTopic().c_str(), av1Payload);
+      // this->mqttController->sendMqttPacket("YOOO", av1Payload);
       return;
     }
   }

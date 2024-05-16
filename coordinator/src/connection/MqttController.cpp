@@ -1,50 +1,50 @@
 #include "MqttController.h"
 
 
-MqttController::MqttController(EthernetClient *ethClient){
-  this->mqttClient = new PubSubClient(*ethClient);
+MqttController::MqttController(EthernetClient *ethClient) : mqttClient(PubSubClient(*ethClient)){
+
+  // this.mqttClient = new PubSubClient(*ethClient);
 }
 
 void MqttController::setupMqttConnection(){
     
-    mqttClient->setServer(SERVER_ADDRESS, 1883);
+    mqttClient.setServer(SERVER_ADDRESS, 1883);
     // mqttClient.setCallback(callback);
-    mqttClient->setKeepAlive(15);
 
     // MqttConnectionManager::serverEventCallback = serverEventCallback;
     // g_serverEventCallback = serverEventCallback; //
 
-    if (mqttClient->connect(CLIENT_ID))
+    if (mqttClient.connect(CLIENT_ID))
     {
         // Serial.println(mqttClient.state()); //  will provide more information
         
-        // mqttClient->setBufferSize(2048);
+        // mqttClient.setBufferSize(2048);
     }
     else
     {
         // connection failed
         Serial.println("Failed to connect status: ");
-        Serial.println(mqttClient->state());           
+        Serial.println(mqttClient.state());           
     }
 }
 
-bool MqttController::getMqttConnectionStatus(){
-    if (mqttClient->connected() == false)
-    {
-        Serial.println("Mqtt connection lost");
-        return false;
-    }
-    return true;
-}
+// bool MqttController::getMqttConnectionStatus(){
+//     if (mqttClient.connected() == false)
+//     {
+//         Serial.println("Mqtt connection lost");
+//         return false;
+//     }
+//     return true;
+// }
 
 void MqttController::loop(){
-  this->mqttClient->loop();
+  this->mqttClient.loop();
 }
 
-void MqttController::sendMqttPacket(String topic, StaticJsonDocument<60> json){
-  char buffer[60];
+void MqttController::sendMqttPacket(const char topic[], StaticJsonDocument<20> json){
+  char buffer[20];
   serializeJson(json, buffer);
-  Serial.println(buffer);
+  // Serial.println(buffer);
   // // client.publish("topic", buffer);
-  this->mqttClient->publish(topic.c_str(), buffer);
+  this->mqttClient.publish(topic, buffer);
 }

@@ -11,7 +11,7 @@ String PotentiometerSensor::getType(){
 }
 
 String PotentiometerSensor::getSensorName(){
-  return "heaterKnobRotation";
+  return "heaterRotation";
 }
 
 float PotentiometerSensor::parseReadingIntoMeasurement(int reading

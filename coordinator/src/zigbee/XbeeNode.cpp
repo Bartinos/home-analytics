@@ -1,5 +1,4 @@
 #include "XbeeNode.h"
-#include "Config.h"
 #include "sensor/Av1Sensor.h"
 
 XbeeNode::XbeeNode(String identifier, String space, byte mac[8], Av1Sensor *sensor){
@@ -17,12 +16,15 @@ bool XbeeNode::compareMac(const byte otherMac[8]) {
 }
 
 String XbeeNode::getTopic(){
-  // String topic = TOPIC_DATA_MEASUREMENT_PUB_PREFIX;
+  // String topic = "ha-coordinator/AV1/DATA/UD/UD/netherlands/breda/house";
+  // String topic = "ha-coordinator/netherlands/breda/house/WORKAAA/" + space;
+  // String topic = "hac1/breda/house/" + space + "/" + sensor->getSensorName();
   // topic += "/";
   // topic += this->space;
   // topic += "/";
   // topic += this->sensor->getSensorName();
-  // return topic;
+  // Serial.println(topic);
+  return "hac1/breda/house/" + space + "/" + sensor->getSensorName();
   // return String(TOPIC_DATA_MEASUREMENT_PUB_PREFIX) + "/" + this->space + "/" + this->sensor->getSensorName();
-  return "test";
+  // return "test";
 }

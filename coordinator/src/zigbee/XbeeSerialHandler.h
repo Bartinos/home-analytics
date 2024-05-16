@@ -3,8 +3,6 @@
 #define XBEE_SERIAL_HANDLER_H
 #include <Arduino.h>
 #include "XbeeNode.h"
-#include <StandardCplusplus.h>
-#include <vector>
 #include "XbeeReading.h"
 #include "../sensor/TemperatureSensor.h"
 
