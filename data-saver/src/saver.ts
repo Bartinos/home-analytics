@@ -19,7 +19,7 @@ client.on("message", async (topic, message) => {
   console.log(`Message received on topic: ${topic.toString()}`);
   console.log(`Body: \n${message.toString()}`);
 
-  const av1Topic: Av1Topic = Av1Topic.fromTopicString(topic);
+  const av1Topic: Av1Topic = Av1Topic.fromSimplifiedTopicString(topic);
 
   // Exit early if not a valid av1Topic
   if(!av1Topic) return;
