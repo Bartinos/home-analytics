@@ -1,11 +1,28 @@
-const { readMeasurements, createMeasurement } = require('../services/measurementService');
+const { readMeasurements, createMeasurement, readMeasurementsGroupedByTopic, readMeasurementsByTopic } = require('../services/measurementService');
 const { readTopicByMatchingValues, createTopic } = require('../services/topicService');
 const WEEK_IN_SECONDS = 604800
 
 const getMeasurements = async (req, res, next) => {
   // If no `since` param has been set, then take the timestamp in miliseconds from one week ago 
   const afterTimestamp = req.query.since? req.query.since * 1000 : (Date.now() - (WEEK_IN_SECONDS * 1000))
-  const measurements = await readMeasurements(afterTimestamp)
+  
+  let measurements = null
+
+  const country = req.query.country
+  const city = req.query.city
+  const building = req.query.building
+  const space = req.query.space
+  const sensor = req.query.sensor
+  if(country && city && building && space && sensor){
+    let matchingTopicResult = await readTopicByMatchingValues(country, city, building, space, sensor)
+    if(!matchingTopicResult){
+      return res.status(404).json({errors: ["Could not find matching topic"]})
+    }
+    measurements = await readMeasurementsByTopic(afterTimestamp, matchingTopicResult.id)
+    return res.status(200).json(measurements)
+  }
+   measurements = await readMeasurements(afterTimestamp)
+  // const measurements = await readMeasurementsGroupedByTopic(afterTimestamp)
   return res.status(200).json(measurements)
 }
 

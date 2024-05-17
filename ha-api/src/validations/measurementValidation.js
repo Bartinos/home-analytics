@@ -22,7 +22,12 @@ const postMeasurementValidation = (req, res, next) => {
 }
 
 const getMeasurementsSchema = Joi.object({
-  since: Joi.date().timestamp('unix').min(MIN_SUPPORTED_UNIX_DATE).max(MAX_SUPPORTED_UNIX_DATE)
+  since: Joi.date().timestamp('unix').min(MIN_SUPPORTED_UNIX_DATE).max(MAX_SUPPORTED_UNIX_DATE),
+  country: Joi.string(),
+  city: Joi.string(),
+  building: Joi.string(),
+  space: Joi.string(),
+  sensor: Joi.string(),
 })
 
 const getMeasurementsValidation = (req, res, next) => {
