@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../models/loginRequest.interface';
-import { loginUser } from '../../state/user/user.actions';
+import { LoginRequest } from '../../shared/models/loginRequest.interface';
+import { userActions } from '../../state/user/user.actions';
 import { Store } from '@ngrx/store';
 import { selectIsSubmittingLogin } from '../../state/user/user.selectors';
 import { CommonModule } from '@angular/common';
@@ -43,6 +43,6 @@ export class AuthComponent implements OnInit {
   // Send Login form
   public onSubmit() {
     const request: LoginRequest = this.loginForm.getRawValue();
-    this.store.dispatch(loginUser({ request }));
+    this.store.dispatch(userActions.login({ request }));
   }
 }

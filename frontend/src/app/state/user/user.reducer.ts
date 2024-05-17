@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store"
-import { loginUser } from "./user.actions"
+import {  userActions } from "./user.actions"
 
 export interface UserState {
   username: string,
@@ -18,9 +18,20 @@ export const initialUserState: UserState = {
 
 export const userReducer = createReducer(
   initialUserState,
-  on(loginUser, (state) => ({
+  on(userActions.login, (state) => ({
     ...state,
     isSubmittingLogin: true,
     status: 'loading' as const
+  })),
+  on(userActions.loginSuccess, (state) => ({
+    ...state,
+    isSubmittingLogin: false,
+    // username: currentUser.username,
+    status: 'success' as const
+  })),
+  on(userActions.loginFailure, (state) => ({
+    ...state,
+    isSubmittingLogin: false,
+    status: 'error' as const
   }))
 )
