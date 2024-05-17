@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { CurrentUser } from '../models/currentUser.interface';
-import { AuthResponse } from '../models/authResponse.interface';
-import { LoginRequest } from '../models/loginRequest.interface';
+import { CurrentUser } from '../models/current-user.interface';
+import { AuthResponse } from '../models/auth-response.interface';
+import { LoginRequest } from '../models/login-request.interface';
 // import { StorageService } from './storage.service';
 
 const AUTH_API = 'http://localhost:3000/'

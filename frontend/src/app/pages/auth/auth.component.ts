@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../shared/models/loginRequest.interface';
+import { LoginRequest } from '../../shared/models/login-request.interface';
 import { authActions } from '../../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
 import { selectIsSubmittingLogin } from '../../state/auth/auth.selectors';

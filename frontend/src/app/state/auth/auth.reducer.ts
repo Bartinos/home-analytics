@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store"
 import {  authActions } from "./auth.actions"
-import { CurrentUser } from "../../shared/models/currentUser.interface"
-import { BackendErrors } from "../../shared/models/backendErrors.interface"
+import { CurrentUser } from "../../shared/models/current-user.interface"
+import { BackendErrors } from "../../shared/models/backend-errors.interface"
 
 export interface AuthState {
   currentUser: CurrentUser | null | undefined,
