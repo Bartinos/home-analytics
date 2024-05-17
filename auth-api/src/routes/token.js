@@ -3,6 +3,6 @@ const router = express.Router()
 
 const sessionController = require('../controllers/sessionController')
 
-router.get('/', sessionController.generateToken)
+router.post('/', sessionController.generateToken)
 
 module.exports = router

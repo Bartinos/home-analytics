@@ -5,8 +5,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {path: '', canActivateChild: [isLoggedInGuard], children: [
-    { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    { path: 'login', redirectTo: 'dashboard'},
+    // { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
+    // { path: 'login', redirectTo: 'dashboard'},
     { path: 'dashboard', component: DashboardComponent}
   ]},
 { path: 'login', component: AuthComponent }

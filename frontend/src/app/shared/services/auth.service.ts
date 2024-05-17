@@ -4,6 +4,7 @@ import { Observable, map } from 'rxjs';
 import { CurrentUser } from '../models/current-user.interface';
 import { AuthResponse } from '../models/auth-response.interface';
 import { LoginRequest } from '../models/login-request.interface';
+import { PersistanceService } from './persistance.service';
 // import { StorageService } from './storage.service';
 
 const AUTH_API = 'http://localhost:3000/'
@@ -17,6 +18,7 @@ export class AuthService {
 
   constructor() { }
   private http = inject(HttpClient);
+  private persistanceService = inject(PersistanceService);
   // private storageService = inject(StorageService);
 
   login(loginRequest: LoginRequest): Observable<CurrentUser> {
@@ -41,9 +43,9 @@ export class AuthService {
   }
 
   refreshAccessToken(): Observable<any> {
-    // const refreshToken: string = this.storageService.getRefreshToken();
-    return this.http.post(AUTH_API + 'tokens', {
-      // token: refreshToken
+    const refreshToken = this.persistanceService.get('refreshToken')?.toString();
+    return this.http.post(AUTH_API + 'token', {
+      token: refreshToken
     },
       httpOptions);
   }
