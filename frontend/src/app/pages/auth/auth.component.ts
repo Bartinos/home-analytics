@@ -2,11 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from '../../shared/models/loginRequest.interface';
-import { userActions } from '../../state/user/user.actions';
+import { authActions } from '../../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
-import { selectIsSubmittingLogin } from '../../state/user/user.selectors';
+import { selectIsSubmittingLogin } from '../../state/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
-import { UserState } from '../../state/user/user.reducer';
+import { AuthState } from '../../state/auth/auth.reducer';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -20,7 +20,7 @@ export class AuthComponent implements OnInit {
 
   public loginForm!: FormGroup;
   private router = inject(Router);
-  private store: Store<{userState: UserState}> = inject(Store);
+  private store: Store<{authState: AuthState}> = inject(Store);
   // Form state
   // public mailErrorMessage: string = '';
   // errorMessage: string = '';
@@ -43,6 +43,6 @@ export class AuthComponent implements OnInit {
   // Send Login form
   public onSubmit() {
     const request: LoginRequest = this.loginForm.getRawValue();
-    this.store.dispatch(userActions.login({ request }));
+    this.store.dispatch(authActions.login({ request }));
   }
 }

@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store"
-import {  userActions } from "./user.actions"
+import {  authActions } from "./auth.actions"
 import { CurrentUser } from "../../shared/models/currentUser.interface"
 import { BackendErrors } from "../../shared/models/backendErrors.interface"
 
-export interface UserState {
+export interface AuthState {
   currentUser: CurrentUser | null | undefined,
   isSubmittingLogin: boolean,
   // error: string,
@@ -13,7 +13,7 @@ export interface UserState {
   // user: UserState;
 }
 
-export const initialUserState: UserState = {
+export const initialAuthState: AuthState = {
   currentUser: undefined,
   isSubmittingLogin: false,
   // error: '',
@@ -22,21 +22,21 @@ export const initialUserState: UserState = {
   validationErrors: null
 }
 
-export const userReducer = createReducer(
-  initialUserState,
-  on(userActions.login, (state) => ({
+export const authReducer = createReducer(
+  initialAuthState,
+  on(authActions.login, (state) => ({
     ...state,
     isSubmittingLogin: true,
     // status: 'loading' as const
     validationErrors: null
   })),
-  on(userActions.loginSuccess, (state, action) => ({
+  on(authActions.loginSuccess, (state, action) => ({
     ...state,
     isSubmittingLogin: false,
     user: action.currentUser,
     // status: 'success' as const
   })),
-  on(userActions.loginFailure, (state, action) => ({
+  on(authActions.loginFailure, (state, action) => ({
     ...state,
     isSubmittingLogin: false,
     validationErrors: action.errors
