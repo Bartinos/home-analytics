@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 app.use(express.json())
 app.use(logEndpoint)
+app.use(cors())
 const measurementRoute = require('./routes/measurement')
 const topicRoute = require('./routes/topic')
 

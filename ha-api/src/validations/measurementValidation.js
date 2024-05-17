@@ -37,7 +37,6 @@ const getMeasurementsValidation = (req, res, next) => {
     // If validation fails, send an error response
     return res.status(400).json({ error: error.details[0].message })
   }
-
   next()
 }
 
