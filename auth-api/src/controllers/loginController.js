@@ -29,7 +29,7 @@ const login = async (req, res, next) => {
   const refreshToken = tokenGenerator.generateRefreshToken(jwtUser);
   const createdSessionResult = await createSession(refreshToken, foundUser.id);
 
-  return res.json({ accessToken, refreshToken})
+  return res.json({ user: { username}, accessToken, refreshToken})
 }
 
 

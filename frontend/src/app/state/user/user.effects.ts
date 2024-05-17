@@ -4,6 +4,7 @@ import { AuthService } from "../../shared/services/auth.service";
 import { userActions } from "./user.actions";
 import { catchError, map, of, switchMap } from "rxjs";
 import { CurrentUser } from "../../shared/models/currentUser.interface";
+import { HttpErrorResponse } from "@angular/common/http";
 
 
 export const loginEffect = createEffect((
@@ -17,8 +18,8 @@ export const loginEffect = createEffect((
           map((currentUser: CurrentUser) => {
             return userActions.loginSuccess({currentUser})
           }),
-          catchError(() => {
-            return of(userActions.loginFailure())
+          catchError((errorResponse: HttpErrorResponse) => {
+            return of(userActions.loginFailure(errorResponse.error.errors))
           })
         )
       })

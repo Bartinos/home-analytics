@@ -3,11 +3,13 @@ import { AppState } from "../app.state";
 import { UserState } from "./user.reducer";
 
 export const selectUserState = (state: AppState) => state.userState;
-export const selectUsername = createSelector(
+export const selectCurrentUser = createSelector(
   selectUserState,
-  (userState: UserState) => userState.username
+  (userState: UserState) => userState.currentUser
 )
 export const selectIsSubmittingLogin = createSelector(
   selectUserState,
   (userState: UserState) => userState.isSubmittingLogin
 )
+
+// export const selectIs
