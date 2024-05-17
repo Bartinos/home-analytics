@@ -8,6 +8,7 @@ import { selectIsSubmittingLogin } from '../../state/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
 import { AuthState } from '../../state/auth/auth.reducer';
 import { Observable } from 'rxjs';
+import { PersistanceService } from '../../shared/services/persistance.service';
 
 @Component({
   selector: 'app-auth',
@@ -21,6 +22,7 @@ export class AuthComponent implements OnInit {
   public loginForm!: FormGroup;
   private router = inject(Router);
   private store: Store<{authState: AuthState}> = inject(Store);
+  private persistanceService = inject(PersistanceService);
   // Form state
   // public mailErrorMessage: string = '';
   // errorMessage: string = '';
@@ -28,6 +30,9 @@ export class AuthComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
+    // Navigate to dashboard if already logged in
+   if(this.persistanceService.get('refreshToken') && this.persistanceService.get('accessToken')) this.router.navigateByUrl('dashboard');
+
     this.loginForm = this.fb.group({
       username: ['', [
         Validators.required,

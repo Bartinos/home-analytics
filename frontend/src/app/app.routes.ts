@@ -4,10 +4,10 @@ import { isLoggedInGuard } from './shared/guards/is-logged-in.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
-    {path: '', canActivateChild: [isLoggedInGuard], children: [
-    // { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-    // { path: 'login', redirectTo: 'dashboard'},
-    { path: 'dashboard', component: DashboardComponent}
+  { path: '', canActivateChild: [isLoggedInGuard], children: [
+    { path: 'dashboard', component: DashboardComponent },
+    { path: '', redirectTo: 'dashboard', pathMatch: 'full' }, // redirect to dashboard only when logged in
+
   ]},
-{ path: 'login', component: AuthComponent }
+  { path: 'login', component: AuthComponent }
 ];
