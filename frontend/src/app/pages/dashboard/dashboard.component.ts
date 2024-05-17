@@ -2,9 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MeasurementService } from '../../shared/services/measurement.service';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../../state/auth/auth.reducer';
-import { MeasurementState } from '../../state/measurements/measurement.reducer';
+import { MeasurementState, temperatureTopic } from '../../state/measurements/measurement.reducer';
 import { measurementActions } from '../../state/measurements/measurement.actions';
 import { GetMeasurementsRequest } from '../../shared/models/get-measurements-request.interface';
+import { selectTemperatureMeasurementCollection } from '../../state/measurements/measurement.selectors';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,34 +16,17 @@ import { GetMeasurementsRequest } from '../../shared/models/get-measurements-req
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
-constructor()  {
+  constructor() {
 
-}
-  private store = inject(Store<{authState: AuthState, measurementState: MeasurementState}>);
+  }
+  private store = inject(Store<{ authState: AuthState, measurementState: MeasurementState }>);
   private measurementService = inject(MeasurementService)
   ngOnInit() {
-
-    // this.measurementService.getMeasurements({
-    //   topic: {
-    //     country: "netherlands",
-    //     city: "breda",
-    //     building: "home",
-    //     space: "livingroom",
-    //     sensor: "brightness"
-    //   }
-    // }).subscribe(a => {
-    //
-    //     console.log(a)
-    //   });
+    // this.store.select(selectTemperatureMeasurementCollection).pipe(map((collection) => {
+    const topic = temperatureTopic;
     const request: GetMeasurementsRequest = {
-      topic: {
-        country: "netherlands",
-        city: "breda",
-        building: "home",
-        space: "stairs",
-        sensor: "temperature"
-      }
+      topic
     }
-    this.store.dispatch(measurementActions.fetchTemperatureMeasurements({request}));
+    this.store.dispatch(measurementActions.fetchTemperatureMeasurements({ request }));
   }
 }

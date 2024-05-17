@@ -2,49 +2,52 @@ import { createReducer, on } from "@ngrx/store";
 import { MeasurementCollection } from "../../shared/models/measurement-collection.interface";
 import { Measurement } from "../../shared/models/measurement.interface";
 import { measurementActions } from "./measurement.actions";
+import { Topic } from "../../shared/models/topic.interface";
 
 export interface MeasurementState {
-  isFetching: boolean,
-  temperatureMeasurements: MeasurementCollection,
-  heaterMeasurements: MeasurementCollection,
-  brightnessMeasurements: MeasurementCollection ,
+  // isFetching: boolean,
+  temperatureMeasurementCollection: MeasurementCollection,
+  heaterMeasurementCollection: MeasurementCollection,
+  brightnessMeasurementCollection: MeasurementCollection,
 }
 
+export const temperatureTopic: Topic = {
+  country: "netherlands",
+  city: "breda",
+  building: "home",
+  space: "stairs",
+  sensor: "temperature"
+}
 
-export const initialMeasurementState: MeasurementState ={
-  isFetching: false,
-  temperatureMeasurements: {
-    topic:{
-      country: "netherlands",
-      city: "breda",
-      building: "home",
-      space: "stairs",
-      sensor: "temperature"
-
-    },
-    measurements: []
-  },
-  heaterMeasurements: {
-    topic:{
+export const heaterTopic: Topic = {
       country: "netherlands",
       city: "breda",
       building: "home",
       space: "livingroom",
       sensor: "heaterRotation"
+}
 
-    },
-    measurements: []
-
-  },
-  brightnessMeasurements: {
-    topic:{
+export const brightnessTopic: Topic = {
       country: "netherlands",
       city: "breda",
       building: "home",
       space: "livingroom",
       sensor: "brightness"
+}
 
-    },
+export const initialMeasurementState: MeasurementState = {
+  // isFetching: false,
+  temperatureMeasurementCollection: {
+    isFetching: false,
+    measurements: []
+  },
+  heaterMeasurementCollection: {
+    isFetching: false,
+    measurements: []
+
+  },
+  brightnessMeasurementCollection: {
+    isFetching: false,
     measurements: []
   }
 }
@@ -53,19 +56,23 @@ export const measurementReducer = createReducer(
   initialMeasurementState,
   on(measurementActions.fetchTemperatureMeasurements, (state) => ({
     ...state,
-    isFetching: true
+    temperatureMeasurementCollection: {
+      ...state.temperatureMeasurementCollection,
+      isFetching: true,
+    }
   })),
-  on(measurementActions.fetchTemperatureMeasurementsSuccess, (state, {measurements}) => ({
+  on(measurementActions.fetchTemperatureMeasurementsSuccess, (state, { measurements }) => ({
     ...state,
-    isFetching: false,
-    // temperatureMeasurements.measurements = measurements
-    temperatureMeasurements: {
+    temperatureMeasurementCollection: {
       measurements: measurements,
-      topic: state.temperatureMeasurements.topic
+      isFetching: false,
     }
   })),
   on(measurementActions.fetchTemperatureMeasurementsFailure, (state) => ({
     ...state,
-    isFetching: false
+    temperatureMeasurementCollection: {
+      ...state.temperatureMeasurementCollection,
+      isFetching: false,
+    }
   }))
 )
