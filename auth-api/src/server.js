@@ -17,6 +17,7 @@ app.use("/logout", logoutRoute)
 
 function logEndpoint(req, res, next) {
     console.log(req.originalUrl)
+    console.log(req.query)
     console.log(req.body)
     next()
 }

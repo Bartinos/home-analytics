@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AuthState } from '../../state/auth/auth.reducer';
 import { Observable } from 'rxjs';
 import { PersistanceService } from '../../shared/services/persistance.service';
+import { MeasurementState } from '../../state/measurementState/measurement.reducer';
 
 @Component({
   selector: 'app-auth',
@@ -21,7 +22,7 @@ export class AuthComponent implements OnInit {
 
   public loginForm!: FormGroup;
   private router = inject(Router);
-  private store: Store<{authState: AuthState}> = inject(Store);
+  private store: Store<{ authState: AuthState, measurementState: MeasurementState }> = inject(Store);
   private persistanceService = inject(PersistanceService);
   // Form state
   // public mailErrorMessage: string = '';
@@ -31,7 +32,7 @@ export class AuthComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
     // Navigate to dashboard if already logged in
-   if(this.persistanceService.get('refreshToken') && this.persistanceService.get('accessToken')) this.router.navigateByUrl('dashboard');
+    if (this.persistanceService.get('refreshToken') && this.persistanceService.get('accessToken')) this.router.navigateByUrl('dashboard');
 
     this.loginForm = this.fb.group({
       username: ['', [

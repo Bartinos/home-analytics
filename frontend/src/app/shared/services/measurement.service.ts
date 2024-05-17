@@ -21,12 +21,12 @@ export class MeasurementService {
   private http = inject(HttpClient)
 
   getMeasurements(data: GetMeasurementsRequest): Observable<Measurement[]> {
-    const params = new HttpParams();
-    params.set('country', data.topic.country);
-    params.set('city', data.topic.city);
-    params.set('building', data.topic.building);
-    params.set('space', data.topic.space);
-    params.set('sensor', data.topic.sensor);
+    const params = new HttpParams()
+    .set('country', data.topic.country)
+    .set('city', data.topic.city)
+    .set('building', data.topic.building)
+    .set('space', data.topic.space)
+    .set('sensor', data.topic.sensor)
 
     const options = {
       params: params,
