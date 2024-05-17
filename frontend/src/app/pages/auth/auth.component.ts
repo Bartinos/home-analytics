@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { AuthState } from '../../state/auth/auth.reducer';
 import { Observable } from 'rxjs';
 import { PersistanceService } from '../../shared/services/persistance.service';
-import { MeasurementState } from '../../state/measurementState/measurement.reducer';
+import { MeasurementState } from '../../state/measurements/measurement.reducer';
 
 @Component({
   selector: 'app-auth',

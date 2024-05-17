@@ -2,8 +2,8 @@ import { Component, OnInit, inject } from '@angular/core';
 import { MeasurementService } from '../../shared/services/measurement.service';
 import { Store } from '@ngrx/store';
 import { AuthState } from '../../state/auth/auth.reducer';
-import { MeasurementState } from '../../state/measurementState/measurement.reducer';
-import { measurementActions } from '../../state/measurementState/measurement.actions';
+import { MeasurementState } from '../../state/measurements/measurement.reducer';
+import { measurementActions } from '../../state/measurements/measurement.actions';
 import { GetMeasurementsRequest } from '../../shared/models/get-measurements-request.interface';
 
 @Component({

@@ -8,9 +8,9 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { authReducer } from './state/auth/auth.reducer';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import * as authEffects from './state/auth/auth.effects';
-import * as measurementEffects from './state/measurementState/measurement.effects';
+import * as measurementEffects from './state/measurements/measurement.effects';
 import { tokenInterceptor } from './shared/interceptors/auth.interceptor';
-import { measurementReducer } from './state/measurementState/measurement.reducer';
+import { measurementReducer } from './state/measurements/measurement.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideStore({ authState: authReducer, measurementState: measurementReducer }), provideEffects(authEffects, measurementEffects), provideHttpClient(withInterceptorsFromDi()), tokenInterceptor, provideStoreDevtools({
