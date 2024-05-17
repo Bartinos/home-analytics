@@ -6,7 +6,7 @@ import { catchError, forkJoin, from, map, of, switchMap } from "rxjs";
 import { GetMeasurementsRequest } from "../../shared/models/get-measurements-request.interface";
 import { Store } from "@ngrx/store";
 
-export const fetchMeasurementsEffect = createEffect((
+export const fetchTemperatureMeasurementsEffect = createEffect((
   actions$ = inject(Actions),
   measurementService = inject(MeasurementService)
 ) => {
@@ -17,7 +17,6 @@ export const fetchMeasurementsEffect = createEffect((
       )),
       catchError((error) => of(measurementActions.fetchTemperatureMeasurementsFailure()))
     )))
-
   )
 },
   {
@@ -25,6 +24,41 @@ export const fetchMeasurementsEffect = createEffect((
   }
 )
 
+export const fetchHeaterMeasurementsEffect = createEffect((
+  actions$ = inject(Actions),
+  measurementService = inject(MeasurementService)
+) => {
+  return actions$.pipe(
+    ofType(measurementActions.fetchHeaterMeasurements),
+    switchMap(({ request }) => from(measurementService.getMeasurements(request).pipe(
+      map((measurements) => measurementActions.fetchHeaterMeasurementsSuccess({ measurements: measurements }
+      )),
+      catchError((error) => of(measurementActions.fetchHeaterMeasurementsFailure()))
+    )))
+  )
+},
+  {
+    functional: true
+  }
+)
+
+export const fetchBrightnessMeasurementsEffect = createEffect((
+  actions$ = inject(Actions),
+  measurementService = inject(MeasurementService)
+) => {
+  return actions$.pipe(
+    ofType(measurementActions.fetchBrightnessMeasurements),
+    switchMap(({ request }) => from(measurementService.getMeasurements(request).pipe(
+      map((measurements) => measurementActions.fetchBrightnessMeasurementsSuccess({ measurements: measurements }
+      )),
+      catchError((error) => of(measurementActions.fetchBrightnessMeasurementsFailure()))
+    )))
+  )
+},
+  {
+    functional: true
+  }
+)
 // export const fetchMeasurementsEffect = createEffect((
 //   actions$ = inject(Actions),
 //   measurementService = inject(MeasurementService)

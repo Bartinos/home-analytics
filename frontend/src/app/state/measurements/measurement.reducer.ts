@@ -24,7 +24,7 @@ export const heaterTopic: Topic = {
       city: "breda",
       building: "home",
       space: "livingroom",
-      sensor: "heaterRotation"
+      sensor: "heater"
 }
 
 export const brightnessTopic: Topic = {
@@ -74,5 +74,47 @@ export const measurementReducer = createReducer(
       ...state.temperatureMeasurementCollection,
       isFetching: false,
     }
-  }))
+  })),
+  on(measurementActions.fetchHeaterMeasurements, (state) => ({
+    ...state,
+    heaterMeasurementCollection: {
+      ...state.heaterMeasurementCollection,
+      isFetching: true,
+    }
+  })),
+  on(measurementActions.fetchHeaterMeasurementsSuccess, (state, { measurements }) => ({
+    ...state,
+    heaterMeasurementCollection: {
+      measurements: measurements,
+      isFetching: false,
+    }
+  })),
+  on(measurementActions.fetchHeaterMeasurementsFailure, (state) => ({
+    ...state,
+    heaterMeasurementCollection: {
+      ...state.heaterMeasurementCollection,
+      isFetching: false,
+    }
+  })),
+  on(measurementActions.fetchBrightnessMeasurements, (state) => ({
+    ...state,
+    brightnessMeasurementCollection: {
+      ...state.brightnessMeasurementCollection,
+      isFetching: true,
+    }
+  })),
+  on(measurementActions.fetchBrightnessMeasurementsSuccess, (state, { measurements }) => ({
+    ...state,
+    brightnessMeasurementCollection: {
+      measurements: measurements,
+      isFetching: false,
+    }
+  })),
+  on(measurementActions.fetchBrightnessMeasurementsFailure, (state) => ({
+    ...state,
+    brightnessMeasurementCollection: {
+      ...state.brightnessMeasurementCollection,
+      isFetching: false,
+    }
+  })),
 )
