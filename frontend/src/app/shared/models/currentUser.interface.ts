@@ -1,3 +1,5 @@
 export interface CurrentUser {
-  username: string
+  username: string,
+  accessToken: string,
+  refreshToken: string
 }
