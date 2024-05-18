@@ -64,9 +64,9 @@ async function readMeasurementsByTopic(afterTimestamp, topicId) {
       topic_id: Number(topicId)
       
     },
-    include: {
-      topic: true
-    },
+    // include: {
+    //   topic: true
+    // },
     orderBy: {
       created_at: 'desc'
     }

@@ -22,11 +22,11 @@ export class MeasurementService {
 
   getMeasurements(data: GetMeasurementsRequest): Observable<Measurement[]> {
     const params = new HttpParams()
-    .set('country', data.topic.country)
-    .set('city', data.topic.city)
-    .set('building', data.topic.building)
-    .set('space', data.topic.space)
-    .set('sensor', data.topic.sensor)
+      .set('country', data.topic.country)
+      .set('city', data.topic.city)
+      .set('building', data.topic.building)
+      .set('space', data.topic.space)
+      .set('sensor', data.topic.sensor)
 
     const options = {
       params: params,
@@ -35,8 +35,12 @@ export class MeasurementService {
     return this.http.get<Measurement[]>(
       HA_API_URL,
       options
-    ).pipe(map((response) => response)
-    )
+    ).pipe(map((response: any[]) => {
+      // map each item in the response to StockItem
+      return response.map((item: any) => (<Measurement>{
+        value: item.value,
+        createdAt: item.created_at
+      }));
+    }))
   }
-
 }
