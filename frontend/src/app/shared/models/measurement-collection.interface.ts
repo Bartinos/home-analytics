@@ -5,6 +5,7 @@ export interface MeasurementCollection {
   // readonly topic: Topic,
   isFetching: boolean;
   measurements: Measurement[];
+  readonly name: string;
 
 
 }

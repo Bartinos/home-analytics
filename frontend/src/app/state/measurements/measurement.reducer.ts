@@ -39,15 +39,18 @@ export const initialMeasurementState: MeasurementState = {
   // isFetching: false,
   temperatureMeasurementCollection: {
     isFetching: false,
+    name: "Temperature",
     measurements: []
   },
   heaterMeasurementCollection: {
     isFetching: false,
+    name: "Heater Level",
     measurements: []
 
   },
   brightnessMeasurementCollection: {
     isFetching: false,
+    name: "Brightness",
     measurements: []
   }
 }
@@ -64,6 +67,7 @@ export const measurementReducer = createReducer(
   on(measurementActions.fetchTemperatureMeasurementsSuccess, (state, { measurements }) => ({
     ...state,
     temperatureMeasurementCollection: {
+      ...state.temperatureMeasurementCollection,
       measurements: measurements,
       isFetching: false,
     }
@@ -85,6 +89,7 @@ export const measurementReducer = createReducer(
   on(measurementActions.fetchHeaterMeasurementsSuccess, (state, { measurements }) => ({
     ...state,
     heaterMeasurementCollection: {
+      ...state.heaterMeasurementCollection,
       measurements: measurements,
       isFetching: false,
     }
@@ -106,6 +111,7 @@ export const measurementReducer = createReducer(
   on(measurementActions.fetchBrightnessMeasurementsSuccess, (state, { measurements }) => ({
     ...state,
     brightnessMeasurementCollection: {
+      ...state.brightnessMeasurementCollection,
       measurements: measurements,
       isFetching: false,
     }
