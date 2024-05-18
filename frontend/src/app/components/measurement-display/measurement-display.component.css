@@ -1,0 +1,12 @@
+.display-container{
+  /* @apply w-full p-4 */
+}
+
+.data-title {
+  /* @apply w */
+}
+
+.data-graph {
+  /* @apply w-full bg-white */
+}
+

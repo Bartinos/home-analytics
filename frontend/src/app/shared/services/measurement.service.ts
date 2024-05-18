@@ -39,7 +39,7 @@ export class MeasurementService {
       // map each item in the response to StockItem
       return response.map((item: any) => (<Measurement>{
         value: item.value,
-        createdAt: item.created_at
+        createdAt: new Date(item.created_at)
       }));
     }))
   }
