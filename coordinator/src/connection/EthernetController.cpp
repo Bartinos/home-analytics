@@ -4,10 +4,6 @@ EthernetController::EthernetController(EthernetClient *ethernetClient) : ethClie
 }
 
 void EthernetController::setupNetworkInterface(){
-  
-  while (!Serial) {
-    ; // wait for serial port to connect. Needed for native USB port only
-  }
 
   // start the Ethernet connection:
   Serial.println("Initialize Ethernet with DHCP:");
