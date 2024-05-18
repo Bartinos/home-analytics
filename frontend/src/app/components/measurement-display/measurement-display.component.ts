@@ -21,22 +21,21 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
   })
 
   avg = computed(() => {
-    return this.dataCollection().measurements.reduce((acc, current) => {
-      return acc + current.value;
-    }, 0) / this.dataCollection().measurements.length
+    const sum = this.dataCollection().measurements.reduce((acc, current) => acc + current.value, 0);
+    return (sum / this.dataCollection().measurements.length).toFixed(2);
   })
   min = computed(() => {
-    return Math.min(...this.dataCollection().measurements.map(measurement => measurement.value));
+    return Math.min(...this.dataCollection().measurements.map(measurement => measurement.value)).toFixed(2);
   });
   max = computed(() => {
-    return Math.max(...this.dataCollection().measurements.map(measurement => measurement.value));
+    return Math.max(...this.dataCollection().measurements.map(measurement => measurement.value)).toFixed(2);
   });
   current = computed(() => {
-    return this.dataCollection().measurements[0].value
+    return this.dataCollection().measurements[0].value.toFixed(2)
   })
 
   margin = { top: 70, right: 30, bottom: 40, left: 80 };
-  width = 1200 - this.margin.left - this.margin.right;
+  width = 300 - this.margin.left - this.margin.right;
   height = 500 - this.margin.top - this.margin.bottom;
   xScale = d3.scaleTime().range([0, this.width])
   yScale = d3.scaleLinear().range([this.height, 0])
@@ -104,7 +103,7 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
     // this.svg.select('path').attr("d", line);
     this.svg.append('path').datum(this.dataCollection().measurements)
       .attr("fill", "none")
-      .attr("stroke", "steelblue")
+      .attr("stroke", "rgba(80, 78, 57, 1)")
       .attr("stroke-width", 1)
       .attr("d", line);
 

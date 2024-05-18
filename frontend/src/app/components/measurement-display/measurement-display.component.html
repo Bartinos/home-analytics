@@ -1,17 +1,24 @@
 <div class="display-container">
   <p class="data-title">Title</p>
   <!-- <div class="data-graph"> -->
-  <div #graph> </div>
+  <div #graph class="data-graph"> </div>
 
   <!-- </div> -->
-  <div class="statistics-container">
+  <div class="data-properties-container">
     <!-- <p>{{dataCollection().measurements.length}}</p> -->
     <!-- <p>{{dataCollection().isFetching}}</p> -->
     <!-- <p>{{thing().isFetching}}</p> -->
     <!-- <p>{{isFetching}}</p> -->
-    <h2 class="current-value">Current: {{current()}}</h2>
-    <p>Min: {{min()}}</p>
-    <p>Max: {{max()}}</p>
-    <p>Avg: {{avg()}}</p>
+    <div>
+
+      <p>Min: <span class="statistic-value">{{min()}}</span></p>
+      <p>Max: <span class="statistic-value">{{max()}}</span></p>
+      <p>Avg: <span class="statistic-value">{{avg()}}</span></p>
+    </div>
+    <div class="current-container">
+
+      <h2 class="current-label">Current: </h2>
+      <span class="current-value">{{current()}}</span>
+    </div>
   </div>
 </div>

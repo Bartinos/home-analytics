@@ -1,5 +1,5 @@
 .display-container{
-  /* @apply w-full p-4 */
+  @apply w-full p-4
 }
 
 .data-title {
@@ -7,6 +7,22 @@
 }
 
 .data-graph {
-  /* @apply w-full bg-white */
+  @apply w-full
 }
 
+.statistic-value{
+  @apply text-xl
+}
+
+
+.current-value{
+  @apply text-5xl
+}
+
+.current-container{
+  @apply flex flex-col justify-between
+}
+
+.data-properties-container{
+  @apply flex justify-between
+}

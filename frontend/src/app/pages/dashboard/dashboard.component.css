@@ -6,3 +6,10 @@
 /*   @apply flex flex-col-reverse */
 /* } */
 
+
+@media (min-width: 70em) {
+
+.measurement-displays {
+  @apply flex flex-row justify-between mx-40
+}
+}
