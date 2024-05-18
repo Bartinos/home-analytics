@@ -9,7 +9,7 @@ import { selectBrightnessMeasurementCollection, selectHeaterMeasurementCollectio
 import { map } from 'rxjs';
 import { MeasurementDisplayComponent } from '../../components/measurement-display/measurement-display.component';
 import { CommonModule } from '@angular/common';
-
+import { Signal} from '@angular/core';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -30,6 +30,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     // this.store.select(selectTemperatureMeasurementCollection).pipe(map((collection) => {
     this.fetchData()
+  // length = computed(() => {
+  //   return this.dataCollection().measurements.length
+  // })
   }
 
   private fetchData(): void{
