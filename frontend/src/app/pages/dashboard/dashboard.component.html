@@ -1,1 +1,24 @@
-<p>dashboard works!</p>
+<section>
+  <div class="interactions">
+    <div class="logout-container">
+      <p>logout</p>
+    </div>
+    <div class="timeframe-box">
+
+    </div>
+    <div class="profile-container">
+      <p>Name</p>
+    </div>
+  </div>
+  <div class="measurement-displays">
+    <ng-container *ngIf="temperatureCollection$ | async as tempCollection">
+      <app-measurement-display [dataCollection]="tempCollection" />
+    </ng-container>
+    <ng-container *ngIf="heaterCollection$ | async as heaterCollection">
+      <app-measurement-display [dataCollection]="heaterCollection" />
+    </ng-container>
+    <ng-container *ngIf="brightnessCollection$ | async as brightnessCollection">
+      <app-measurement-display [dataCollection]="brightnessCollection" />
+    </ng-container>
+  </div>
+</section>

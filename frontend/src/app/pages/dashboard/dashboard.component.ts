@@ -5,13 +5,15 @@ import { AuthState } from '../../state/auth/auth.reducer';
 import { MeasurementState, brightnessTopic, heaterTopic, temperatureTopic } from '../../state/measurements/measurement.reducer';
 import { measurementActions } from '../../state/measurements/measurement.actions';
 import { GetMeasurementsRequest } from '../../shared/models/get-measurements-request.interface';
-import { selectTemperatureMeasurementCollection } from '../../state/measurements/measurement.selectors';
+import { selectBrightnessMeasurementCollection, selectHeaterMeasurementCollection, selectTemperatureMeasurementCollection } from '../../state/measurements/measurement.selectors';
 import { map } from 'rxjs';
+import { MeasurementDisplayComponent } from '../../components/measurement-display/measurement-display.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [],
+  imports: [MeasurementDisplayComponent, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -21,6 +23,10 @@ export class DashboardComponent implements OnInit {
   }
   private store = inject(Store<{ authState: AuthState, measurementState: MeasurementState }>);
   private measurementService = inject(MeasurementService)
+  public temperatureCollection$ = this.store.select(selectTemperatureMeasurementCollection);
+  public heaterCollection$ = this.store.select(selectHeaterMeasurementCollection);
+  public brightnessCollection$ = this.store.select(selectBrightnessMeasurementCollection);
+
   ngOnInit() {
     // this.store.select(selectTemperatureMeasurementCollection).pipe(map((collection) => {
     this.fetchData()
