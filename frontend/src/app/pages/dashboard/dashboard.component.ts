@@ -6,7 +6,7 @@ import { MeasurementState, brightnessTopic, heaterTopic, temperatureTopic } from
 import { measurementActions } from '../../state/measurements/measurement.actions';
 import { GetMeasurementsRequest } from '../../shared/models/get-measurements-request.interface';
 import { selectBrightnessMeasurementCollection, selectHeaterMeasurementCollection, selectTemperatureMeasurementCollection } from '../../state/measurements/measurement.selectors';
-import { interval, map, switchMap, take, tap } from 'rxjs';
+import { interval, map, startWith, switchMap, take, tap } from 'rxjs';
 import { MeasurementDisplayComponent } from '../../components/measurement-display/measurement-display.component';
 import { CommonModule } from '@angular/common';
 import { Signal } from '@angular/core';
@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
     // this.store.select(selectTemperatureMeasurementCollection).pipe(map((collection) => {
     // Poll measurements
     interval(3000).pipe(
+      startWith(0),
       tap(() => {
         return this.fetchData()
       })
