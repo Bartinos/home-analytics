@@ -41,7 +41,7 @@ h1 {
 @media (min-width: 70em) {
 
 .measurement-displays {
-  @apply flex flex-row justify-between mx-40
+  @apply flex flex-row justify-evenly
 }
 
 

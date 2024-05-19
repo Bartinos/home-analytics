@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, Signal, ViewChild, computed, effect, input, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, Signal, ViewChild, computed, effect, input, signal } from '@angular/core';
 import { MeasurementCollection } from '../../shared/models/measurement-collection.interface';
 import * as d3 from 'd3';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,13 @@ import { Measurement } from '../../shared/models/measurement.interface';
 })
 export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
   @ViewChild("graph") graph!: ElementRef;
+  innerWidth: number = 0;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.innerWidth = window.innerWidth;
+    // this.initGraph()
+    // this.drawGraph()
+  }
   dataCollection = input.required<MeasurementCollection>()
 
   drawGraphEffect = effect(() => {
@@ -30,12 +37,12 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
     return Math.max(...this.dataCollection().measurements.map(measurement => measurement.value)).toFixed(2);
   });
   current = computed(() => {
-    if(this.dataCollection().measurements.length > 0) return this.dataCollection().measurements[0].value.toFixed(2)
+    if (this.dataCollection().measurements.length > 0) return this.dataCollection().measurements[0].value.toFixed(2)
     return "0";
   })
 
-  margin = { top: 70, right: 30, bottom: 40, left: 80 };
-  width = 300 - this.margin.left - this.margin.right;
+  margin = { top: 70, right: 30, bottom: 40, left: 40 };
+  width = 500 - this.margin.left - this.margin.right;
   height = 500 - this.margin.top - this.margin.bottom;
   xScale = d3.scaleTime().range([0, this.width])
   yScale = d3.scaleLinear().range([this.height, 0])
@@ -103,13 +110,14 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
       .y((d: Measurement) => this.yScale(d.value));
     // this.svg.select('path').attr("d", line);
     // this.svg.delete('path')
+    // this.svg.attr('width', this.innerWidth / 3)
     this.svg.selectAll('path').remove()
     this.svg.append('path').datum(this.dataCollection().measurements)
       .attr("fill", "none")
       .attr("stroke", "rgba(80, 78, 57, 1)")
       .attr("stroke-width", 1)
       .attr("d", line);
-     // const path = this.svg.selectAll('path')
+    // const path = this.svg.selectAll('path')
 
   }
 

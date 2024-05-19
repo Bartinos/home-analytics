@@ -8,6 +8,7 @@
 
 .data-graph {
   @apply w-full
+
 }
 
 .statistic-value{
@@ -29,6 +30,15 @@
 
 @media (min-width: 70em) {
   .data-title{
-    @apply text-center
+    @apply text-center text-xl mb-3
+  }
+
+  .data-graph {
+    /* @apply bg-creamy-yellow-background */
+
+  }
+
+  .data-properties-container {
+    @apply mt-5
   }
 }
