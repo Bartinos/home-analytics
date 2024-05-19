@@ -33,7 +33,12 @@ export const authReducer = createReducer(
   on(authActions.loginSuccess, (state, action) => ({
     ...state,
     isSubmittingLogin: false,
-    user: action.currentUser,
+    // currentUser: {
+    //   username: action.currentUser.username,
+    //
+    // }
+    currentUser: action.currentUser
+      // action.currentUser,
     // status: 'success' as const
   })),
   on(authActions.loginFailure, (state, action) => ({

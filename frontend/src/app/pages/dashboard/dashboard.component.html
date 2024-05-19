@@ -1,15 +1,26 @@
 <section>
-  <div class="interactions">
-    <div class="logout-container">
+  <!-- <div class="interactions"> -->
+  <!--   <div class="logout-container"> -->
+  <!--     <p>logout</p> -->
+  <!--   </div> -->
+  <!--   <div class="profile-container"> -->
+  <!--     <p>Name</p> -->
+  <!--   </div> -->
+  <!-- </div> -->
+  <div class="actions-container">
+    <button class="logout-button" (click)="logout()">
+      <img src="assets/icons/logout.svg">
       <p>logout</p>
-    </div>
+    </button>
     <div class="timeframe-box">
 
     </div>
-    <div class="profile-container">
-      <p>Name</p>
-    </div>
+    <button class="account-button" >
+      <img src="assets/icons/account.svg">
+      <p>{{(user$ | async)?.username}}</p>
+    </button>
   </div>
+
   <div class="measurement-displays">
     <ng-container *ngIf="temperatureCollection$ | async as tempCollection">
       <app-measurement-display [dataCollection]="tempCollection" />

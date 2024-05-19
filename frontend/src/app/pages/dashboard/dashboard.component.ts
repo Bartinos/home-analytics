@@ -10,6 +10,7 @@ import { map } from 'rxjs';
 import { MeasurementDisplayComponent } from '../../components/measurement-display/measurement-display.component';
 import { CommonModule } from '@angular/common';
 import { Signal} from '@angular/core';
+import { selectCurrentUser } from '../../state/auth/auth.selectors';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -22,7 +23,8 @@ export class DashboardComponent implements OnInit {
 
   }
   private store = inject(Store<{ authState: AuthState, measurementState: MeasurementState }>);
-  private measurementService = inject(MeasurementService)
+  private measurementService = inject(MeasurementService);
+  public user$ = this.store.select(selectCurrentUser);
   public temperatureCollection$ = this.store.select(selectTemperatureMeasurementCollection);
   public heaterCollection$ = this.store.select(selectHeaterMeasurementCollection);
   public brightnessCollection$ = this.store.select(selectBrightnessMeasurementCollection);
@@ -33,6 +35,9 @@ export class DashboardComponent implements OnInit {
   // length = computed(() => {
   //   return this.dataCollection().measurements.length
   // })
+    this.user$.subscribe((value) => {
+      console.log(value?.username)
+    })
   }
 
   private fetchData(): void{
@@ -40,7 +45,9 @@ export class DashboardComponent implements OnInit {
     this.store.dispatch(measurementActions.fetchHeaterMeasurements({ request: { topic: heaterTopic} }));
     this.store.dispatch(measurementActions.fetchBrightnessMeasurements({ request: { topic: brightnessTopic} }));
 
+  }
 
+  logout(): void {
 
   }
 }

@@ -6,6 +6,33 @@
 /*   @apply flex flex-col-reverse */
 /* } */
 
+.actions-container{
+  /* height: 100vh; */
+  /* flex: 0 1 40px; */
+  @apply w-full flex justify-between
+}
+
+.actions-container button {
+  background: none;
+  @apply flex items-center opacity-70
+}
+
+
+.actions-container button:hover {
+  background: rgba(105, 146, 155, 0.2);
+  border-radius: 0.2rem;
+  @apply opacity-100
+}
+
+footer button p {
+  @apply ml-1.5
+}
+
+footer button img {
+  @apply w-6
+}
+
+
 
 @media (min-width: 70em) {
 
