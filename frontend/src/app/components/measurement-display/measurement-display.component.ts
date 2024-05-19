@@ -14,7 +14,6 @@ import { Measurement } from '../../shared/models/measurement.interface';
 export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
   @ViewChild("graph") graph!: ElementRef;
   dataCollection = input.required<MeasurementCollection>()
-  svg: any;
 
   drawGraphEffect = effect(() => {
     this.drawGraph()
@@ -40,7 +39,7 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
   height = 500 - this.margin.top - this.margin.bottom;
   xScale = d3.scaleTime().range([0, this.width])
   yScale = d3.scaleLinear().range([this.height, 0])
-
+  svg: any
   // constructor() {
   //
   //   this.xScale.domain(d3.extent(this.dataset, d => d.date));
@@ -104,11 +103,13 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
       .y((d: Measurement) => this.yScale(d.value));
     // this.svg.select('path').attr("d", line);
     // this.svg.delete('path')
+    this.svg.selectAll('path').remove()
     this.svg.append('path').datum(this.dataCollection().measurements)
       .attr("fill", "none")
       .attr("stroke", "rgba(80, 78, 57, 1)")
       .attr("stroke-width", 1)
       .attr("d", line);
+     // const path = this.svg.selectAll('path')
 
   }
 

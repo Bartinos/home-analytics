@@ -21,26 +21,24 @@ export class MeasurementService {
   private http = inject(HttpClient)
 
   getMeasurements(data: GetMeasurementsRequest): Observable<Measurement[]> {
-    let params: HttpParams;
+    // let params: HttpParams;
 
     // console.log(data.since?.getMilliseconds())
+    let date;
     if (!data.since) {
-      params = new HttpParams()
-        .set('country', data.topic.country)
-        .set('city', data.topic.city)
-        .set('building', data.topic.building)
-        .set('space', data.topic.space)
-        .set('sensor', data.topic.sensor)
+      const sixHours: number = 21600;
+      date = Math.floor((new Date().getTime() / 1000) - sixHours)
     } else {
-      const date = Math.floor(data.since.getTime() / 1000);
-      params = new HttpParams().set('since', date)
+      date = Math.floor(data.since.getTime() / 1000);
+    }
+
+    const params = new HttpParams().set('since', date)
         .set('country', data.topic.country)
         .set('city', data.topic.city)
         .set('building', data.topic.building)
         .set('space', data.topic.space)
         .set('sensor', data.topic.sensor)
 
-    }
 
     const options = {
       params: params,
