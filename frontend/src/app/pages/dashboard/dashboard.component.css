@@ -2,9 +2,6 @@
 /*   @apply flex justify-between */
 /* } */
 
-/* section { */
-/*   @apply flex flex-col-reverse */
-/* } */
 
 .actions-container{
   /* height: 100vh; */
@@ -36,9 +33,24 @@ section {
   @apply p-4
 }
 
+h1 {
+  display: none;
+  @apply text-5xl text-center
+}
+
 @media (min-width: 70em) {
 
 .measurement-displays {
   @apply flex flex-row justify-between mx-40
 }
+
+
+
+section {
+  @apply flex flex-col-reverse justify-between h-screen p-16
+}
+
+h1 {
+    @apply block
+  }
 }

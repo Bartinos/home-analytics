@@ -26,3 +26,9 @@
 .data-properties-container{
   @apply flex justify-between
 }
+
+@media (min-width: 70em) {
+  .data-title{
+    @apply text-center
+  }
+}

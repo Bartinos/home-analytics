@@ -25,7 +25,7 @@
 }
 
 .logo{
-  @apply mb-5
+  @apply mb-5 text-xl
 }
 
 section {
