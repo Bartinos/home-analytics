@@ -39,3 +39,74 @@ services:
     networks:
       - tunneled-dev
     restart: unless-stopped
+
+  data-saver:
+    build:
+      context: ../data-saver/
+      dockerfile: ../data-saver/Dockerfile.dev
+    environment:
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - API_URL=${API_URL}
+      - MQTT_BROKER_URL=${MQTT_BROKER_URL}
+    depends_on:
+      - database
+      - mqtt-broker
+    restart: unless-stopped
+    networks:
+      - tunneled-dev
+
+  ha-api:
+    build:
+      context: ../ha-api/
+      dockerfile: ../ha-api/Dockerfile
+    environment:
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - database
+    restart: unless-stopped
+    networks:
+      - tunneled-dev
+      - data-dev
+
+  auth-api:
+    build:
+      context: ../auth-api/
+      dockerfile: ../auth-api/Dockerfile
+    environment:
+      - ACCESS_TOKEN_SECRET=${ACCESS_TOKEN_SECRET}
+      - REFRESH_TOKEN_SECRET=${REFRESH_TOKEN_SECRET}
+      - DATABASE_URL=${DATABASE_URL}
+    depends_on:
+      - database
+    restart: unless-stopped
+    networks:
+      - tunneled-dev
+      - data-dev
+
+  frontend:
+    build:
+      context: ../frontend/
+      dockerfile: ../frontend/Dockerfile.dev
+    restart: unless-stopped
+    networks:
+      - tunneled-dev
+
+  nginx-proxy:
+    image: nginx:alpine3.18
+    volumes:
+      - type: bind
+        source: ../nginx/nginx.dev.conf 
+        target: /etc/nginx/nginx.conf
+    restart: unless-stopped
+    networks:
+     - tunneled-dev
+
+  proxy-tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
+    restart: unless-stopped
+    networks:
+     - tunneled-dev
+
+

@@ -3,8 +3,9 @@ import { Injectable, inject } from "@angular/core";
 import { Observable, map } from "rxjs";
 import { GetMeasurementsRequest } from "../models/get-measurements-request.interface";
 import { Measurement } from "../models/measurement.interface";
+import { environment } from "../../../environments/environment.prod";
 
-const HA_API_URL: string = 'http://localhost:3001/measurements';
+const HA_API_URL: string = environment.haApiUrl;
 
 const headers = new HttpHeaders({ 'Content-Type': 'application/json' })
 
@@ -45,7 +46,7 @@ export class MeasurementService {
       headers: headers
     }
     return this.http.get<Measurement[]>(
-      HA_API_URL,
+      HA_API_URL + 'measurements',
       options
     ).pipe(map((response: any[]) => {
       // map each item in the response to StockItem

@@ -5,9 +5,10 @@ import { CurrentUser } from '../models/current-user.interface';
 import { AuthResponse } from '../models/auth-response.interface';
 import { LoginRequest } from '../models/login-request.interface';
 import { PersistanceService } from './persistance.service';
+import { environment } from '../../../environments/environment.prod';
 // import { StorageService } from './storage.service';
 
-const AUTH_API = 'http://localhost:3000/'
+const AUTH_API = environment.authApiUrl
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 }
