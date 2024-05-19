@@ -1,6 +1,6 @@
-.interactions{
-  @apply flex justify-between
-}
+/* .interactions{ */
+/*   @apply flex justify-between */
+/* } */
 
 /* section { */
 /*   @apply flex flex-col-reverse */
@@ -24,15 +24,17 @@
   @apply opacity-100
 }
 
-footer button p {
+.actions-container button p {
   @apply ml-1.5
 }
 
-footer button img {
+.actions-container button img {
   @apply w-6
 }
 
-
+section {
+  @apply p-4
+}
 
 @media (min-width: 70em) {
 
