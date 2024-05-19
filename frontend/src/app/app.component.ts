@@ -37,7 +37,7 @@ export class AppComponent {
         accessToken: String(accessToken),
         refreshToken: String(refreshToken)
       }
-      console.log(currentUser);
+      // console.log(currentUser);
       this.store.dispatch(authActions.initUser({currentUser}))
     }
   }

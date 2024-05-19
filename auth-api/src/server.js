@@ -4,8 +4,10 @@ const cors = require('cors')
 require('dotenv').config()
 
 app.use(express.json())
-app.use(logEndpoint)
-app.use(cors())
+// app.use(logEndpoint)
+// const corsOptions = { origin: ['*.bartvanmoorsel.com',]} 
+const corsOptions = { origin: '*'} 
+app.use(cors(corsOptions))
 
 // Routes
 const loginRoute = require('./routes/login')

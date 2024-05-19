@@ -14,12 +14,12 @@ import { Measurement } from '../../shared/models/measurement.interface';
 export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
   @ViewChild("graph") graph!: ElementRef;
   innerWidth: number = 0;
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.innerWidth = window.innerWidth;
-    // this.initGraph()
-    // this.drawGraph()
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: Event) {
+  //   this.innerWidth = window.innerWidth;
+  //   // this.initGraph()
+  //   // this.drawGraph()
+  // }
   dataCollection = input.required<MeasurementCollection>()
 
   drawGraphEffect = effect(() => {
@@ -58,15 +58,15 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
 
   private drawGraph() {
     if (!this.graph) {
-      console.log("Graph undefined")
+      // console.log("Graph undefined")
       return
       // } else if(this.dataCollection() && !d3.select(this.graph.nativeElement).select('svg')) {
     } else if (this.dataCollection().measurements.length > 0 && !this.svg) {
-      console.log("No svg found, initializing graph")
+      // console.log("No svg found, initializing graph")
       this.initGraph()
       return
     } else if (this.dataCollection().measurements.length > 0 && this.svg) {
-      console.log("Triggering update")
+      // console.log("Triggering update")
       this.updateGraph()
       return
     }

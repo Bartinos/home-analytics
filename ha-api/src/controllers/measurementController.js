@@ -35,7 +35,7 @@ const postMeasurement = async (req, res, next) => {
   if (!matchingTopicResult) {
     matchingTopicResult = await createTopic(country, city, building, space, sensor)
   }
-  console.log(matchingTopicResult)
+  // console.log(matchingTopicResult)
 
   const createMeasurementResult = await createMeasurement(matchingTopicResult.id, value)
   if(!createMeasurementResult) {
