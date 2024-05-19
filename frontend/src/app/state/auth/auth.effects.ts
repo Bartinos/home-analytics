@@ -19,7 +19,7 @@ export const loginEffect = createEffect((
       switchMap(({request}) => {
         return authService.login(request).pipe(
           map((currentUser: CurrentUser) => {
-            console.log(`Current user: ${currentUser.username}`)
+            // console.log(`Current user: ${currentUser.username}`)
             persistanceService.set('accessToken', currentUser.accessToken);
             persistanceService.set('refreshToken', currentUser.refreshToken);
             return authActions.loginSuccess({currentUser});

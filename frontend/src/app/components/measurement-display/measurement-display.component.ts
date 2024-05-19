@@ -31,7 +31,8 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
     return Math.max(...this.dataCollection().measurements.map(measurement => measurement.value)).toFixed(2);
   });
   current = computed(() => {
-    return this.dataCollection().measurements[0].value.toFixed(2)
+    if(this.dataCollection().measurements.length > 0) return this.dataCollection().measurements[0].value.toFixed(2)
+    return "0";
   })
 
   margin = { top: 70, right: 30, bottom: 40, left: 80 };
