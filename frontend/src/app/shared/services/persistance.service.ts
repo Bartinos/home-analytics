@@ -21,4 +21,12 @@ export class PersistanceService{
       return null;
     }
   }
+
+  clear(): void {
+    try {
+      localStorage.clear()
+    } catch (e) {
+      console.error('Error when clearing storage', e);
+    }
+  }
 }

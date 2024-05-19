@@ -3,7 +3,12 @@ const { readSessionByToken, deleteSession } = require('../services/sessionServic
 
 const logout = async (req, res, next) => {
   const refreshToken = req.body.token;
-  const sessionToDelete = await readSessionByToken(refreshToken);
+  let sessionToDelete; 
+ 
+  try {
+    sessionToDelete = await readSessionByToken(refreshToken);
+  } catch (e) { 
+  }
 
   // Delete RefreshToken if found in db
   if (sessionToDelete != null){

@@ -31,11 +31,11 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    // const refreshToken: string = this.storageService.getRefreshToken();
+    const refreshToken = this.persistanceService.get('refreshToken')?.toString();
     const customHttpOptions = {
       headers: httpOptions.headers,
       body: {
-        // token: refreshToken
+        token: refreshToken
       }
     };
 

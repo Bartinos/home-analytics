@@ -11,6 +11,7 @@ import { MeasurementDisplayComponent } from '../../components/measurement-displa
 import { CommonModule } from '@angular/common';
 import { Signal} from '@angular/core';
 import { selectCurrentUser } from '../../state/auth/auth.selectors';
+import { authActions } from '../../state/auth/auth.actions';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -48,6 +49,6 @@ export class DashboardComponent implements OnInit {
   }
 
   logout(): void {
-
+    this.store.dispatch(authActions.logout());
   }
 }
