@@ -40,18 +40,24 @@ export const initialMeasurementState: MeasurementState = {
   temperatureMeasurementCollection: {
     isFetching: false,
     name: "Temperature",
-    measurements: []
+    measurements: [],
+    timeOfLastFetch: undefined,
+    topic: temperatureTopic
   },
   heaterMeasurementCollection: {
     isFetching: false,
     name: "Heater Level",
-    measurements: []
+    measurements: [],
+    timeOfLastFetch: undefined,
+    topic: heaterTopic
 
   },
   brightnessMeasurementCollection: {
     isFetching: false,
     name: "Brightness",
-    measurements: []
+    measurements: [],
+    timeOfLastFetch: undefined,
+    topic: brightnessTopic
   }
 }
 
@@ -68,8 +74,9 @@ export const measurementReducer = createReducer(
     ...state,
     temperatureMeasurementCollection: {
       ...state.temperatureMeasurementCollection,
-      measurements: measurements,
+      measurements: measurements.concat(state.temperatureMeasurementCollection.measurements),
       isFetching: false,
+      timeOfLastFetch: new Date()
     }
   })),
   on(measurementActions.fetchTemperatureMeasurementsFailure, (state) => ({
@@ -90,8 +97,9 @@ export const measurementReducer = createReducer(
     ...state,
     heaterMeasurementCollection: {
       ...state.heaterMeasurementCollection,
-      measurements: measurements,
+      measurements: measurements.concat(state.heaterMeasurementCollection.measurements),
       isFetching: false,
+      timeOfLastFetch: new Date()
     }
   })),
   on(measurementActions.fetchHeaterMeasurementsFailure, (state) => ({
@@ -112,8 +120,9 @@ export const measurementReducer = createReducer(
     ...state,
     brightnessMeasurementCollection: {
       ...state.brightnessMeasurementCollection,
-      measurements: measurements,
+      measurements: measurements.concat(state.brightnessMeasurementCollection.measurements),
       isFetching: false,
+      timeOfLastFetch: new Date(),
     }
   })),
   on(measurementActions.fetchBrightnessMeasurementsFailure, (state) => ({

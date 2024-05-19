@@ -93,6 +93,7 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
 
     this.svg.append('g')
       .call(d3.axisLeft<number>(this.yScale));
+
     this.updateGraph()
   }
 
@@ -102,6 +103,7 @@ export class MeasurementDisplayComponent implements OnInit, AfterViewInit {
       .x((d: Measurement) => this.xScale(d.createdAt))
       .y((d: Measurement) => this.yScale(d.value));
     // this.svg.select('path').attr("d", line);
+    // this.svg.delete('path')
     this.svg.append('path').datum(this.dataCollection().measurements)
       .attr("fill", "none")
       .attr("stroke", "rgba(80, 78, 57, 1)")
