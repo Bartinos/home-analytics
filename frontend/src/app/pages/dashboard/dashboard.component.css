@@ -9,7 +9,7 @@
   @apply w-full flex justify-between
 }
 
-.actions-container button {
+.text-icon-container{
   background: none;
   @apply flex items-center opacity-70
 }
@@ -21,11 +21,11 @@
   @apply opacity-100
 }
 
-.actions-container button p {
+.actions-container p {
   @apply ml-1.5
 }
 
-.actions-container button img {
+.text-icon-container  img {
   @apply w-6
 }
 

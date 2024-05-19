@@ -8,17 +8,17 @@
   <!--   </div> -->
   <!-- </div> -->
   <div class="actions-container">
-    <button class="logout-button" (click)="logout()">
+    <button class="text-icon-container logout-button" (click)="logout()">
       <img src="assets/icons/logout.svg">
       <p>logout</p>
     </button>
     <div class="timeframe-box">
 
     </div>
-    <button class="account-button" >
+    <div class="text-icon-container" >
       <img src="assets/icons/account.svg">
       <p>{{(user$ | async)?.username}}</p>
-    </button>
+    </div>
   </div>
 
   <div class="measurement-displays">
