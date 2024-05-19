@@ -8,7 +8,8 @@ export const authActions = createActionGroup({
   events: {
     Login: props<{request: LoginRequest}>(),
     'Login success': props<{currentUser: CurrentUser}>(),
-    'Login failure': props<{errors: BackendErrors}>()
+    'Login failure': props<{errors: BackendErrors}>(),
+    'Init user': props<{currentUser: CurrentUser}>()
   }
 })
 

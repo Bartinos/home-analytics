@@ -46,5 +46,9 @@ export const authReducer = createReducer(
     isSubmittingLogin: false,
     validationErrors: action.errors
     // status: 'error' as const
+  })),
+  on(authActions.initUser, (state, action) => ({
+    ...state,
+    currentUser: action.currentUser
   }))
 )
