@@ -5,6 +5,9 @@ import mqtt from "mqtt"; // import namespace "mqtt"
 import { sendMeasurement } from './controllers/measurementController.js';
 import { Av1Topic } from "./models/av1Topic.js";
 
+console.log("Starting DataSaver")
+console.log(`Api at: ${!process.env.API_URL
+}` )
 if (!process.env.ACCESS_TOKEN || !process.env.API_URL || !process.env.MQTT_BROKER_URL){
   console.error("Crucial environment variable(s) not defined, aborting...");
   exit();
