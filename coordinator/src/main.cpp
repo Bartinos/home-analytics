@@ -39,4 +39,8 @@ void loop() {
     XbeeReading xbeeReading = xbeeSerialHandler.createReadingFromSerial();
     xbeeReadingToMqttController.xbeeReadingToMqtt(xbeeReading);
   }
+
+  if(!mqttController.getMqttConnectionStatus()) {
+    mqttController.setupMqttConnection();
+  }
 }

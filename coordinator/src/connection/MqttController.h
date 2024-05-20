@@ -10,7 +10,7 @@ class MqttController
 public:
     MqttController(EthernetClient *ethernetClient);
     void setupMqttConnection();
-    // bool getMqttConnectionStatus();
+    bool getMqttConnectionStatus();
     void loop(); 
     void sendMqttPacket(const char topic[], StaticJsonDocument<20> json);
 private:

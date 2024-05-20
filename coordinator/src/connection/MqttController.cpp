@@ -11,9 +11,6 @@ void MqttController::setupMqttConnection(){
     mqttClient.setServer(SERVER_ADDRESS, 1883);
     // mqttClient.setCallback(callback);
 
-    // MqttConnectionManager::serverEventCallback = serverEventCallback;
-    // g_serverEventCallback = serverEventCallback; //
-
     if (mqttClient.connect(CLIENT_ID))
     {
         // Serial.println(mqttClient.state()); //  will provide more information
@@ -23,19 +20,19 @@ void MqttController::setupMqttConnection(){
     else
     {
         // connection failed
-        Serial.println("Failed to connect status: ");
+        Serial.println("Mqtt failed: ");
         Serial.println(mqttClient.state());           
     }
 }
 
-// bool MqttController::getMqttConnectionStatus(){
-//     if (mqttClient.connected() == false)
-//     {
-//         Serial.println("Mqtt connection lost");
-//         return false;
-//     }
-//     return true;
-// }
+bool MqttController::getMqttConnectionStatus(){
+    if (mqttClient.connected() == false)
+    {
+        Serial.println("Mqtt connection lost");
+        return false;
+    }
+    return true;
+}
 
 void MqttController::loop(){
   this->mqttClient.loop();

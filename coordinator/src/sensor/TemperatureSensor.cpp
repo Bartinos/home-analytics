@@ -20,12 +20,11 @@ float TemperatureSensor::parseReadingIntoMeasurement(int reading
     return INVALID_READING;
   }   
 
+  // Serial.print(reading);
   float percentage = reading / ADC_RESOLUTION;
-  float volt = 5 * percentage;
+  float volt = 5.0 * percentage;
   volt = volt - 0.5; // offset 
-  // convert the ADC value to voltage in millivolt
   float milliVolt = volt * 1000;
-  // convert the voltage to the temperature in Celsius
   float tempC = milliVolt / 100;
 
   return tempC;
