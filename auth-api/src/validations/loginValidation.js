@@ -10,7 +10,7 @@ const loginValidation = (req, res, next) => {
   
   if (error) {
     console.warn(error)
-    return res.status(400).json({ error: error.details.map((error) => error.message) })
+    return res.status(400).json({ errors: error.details.map((error) => error.message) })
   }
   // If validation passes, proceed to the next middleware or route handler
   next()
