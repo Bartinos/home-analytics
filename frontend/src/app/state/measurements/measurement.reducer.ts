@@ -1,11 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import { MeasurementCollection } from "../../shared/models/measurement-collection.interface";
-import { Measurement } from "../../shared/models/measurement.interface";
 import { measurementActions } from "./measurement.actions";
 import { Topic } from "../../shared/models/topic.interface";
 
 export interface MeasurementState {
-  // isFetching: boolean,
   temperatureMeasurementCollection: MeasurementCollection,
   heaterMeasurementCollection: MeasurementCollection,
   brightnessMeasurementCollection: MeasurementCollection,
@@ -36,7 +34,6 @@ export const brightnessTopic: Topic = {
 }
 
 export const initialMeasurementState: MeasurementState = {
-  // isFetching: false,
   temperatureMeasurementCollection: {
     isFetching: false,
     name: "Temperature",

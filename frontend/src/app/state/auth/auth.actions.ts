@@ -1,8 +1,6 @@
 import { createAction, createActionGroup, emptyProps, props} from '@ngrx/store';
 import { LoginRequest } from '../../shared/models/login-request.interface';
 import { CurrentUser } from '../../shared/models/current-user.interface';
-// import { }
-import { BackendErrors } from '../../shared/models/backend-errors.interface';
 export const authActions = createActionGroup({
   source: 'auth',
   events: {

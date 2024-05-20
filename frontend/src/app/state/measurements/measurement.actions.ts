@@ -5,7 +5,6 @@ import { GetMeasurementsRequest } from "../../shared/models/get-measurements-req
 export const measurementActions = createActionGroup({
   source: 'measurement',
   events: {
-    // 'fetch temperature measurements': props<{ since: number}>(),
     'fetch temperature measurements': props<{ request: GetMeasurementsRequest}>(),
     'fetch temperature measurements success': props<{ measurements: Measurement[]}>(),
     'fetch temperature measurements failure': emptyProps(),
@@ -18,6 +17,5 @@ export const measurementActions = createActionGroup({
     'fetch brightness measurements success': props<{ measurements: Measurement[]}>(),
     'fetch brightness measurements failure': emptyProps(),
 
-    // 'fetch all measurements success': props
   }
 })

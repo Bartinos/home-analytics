@@ -24,9 +24,6 @@ export class AuthComponent implements OnInit {
   private router = inject(Router);
   private store: Store<{ authState: AuthState, measurementState: MeasurementState }> = inject(Store);
   private persistanceService = inject(PersistanceService);
-  // Form state
-  // public mailErrorMessage: string = '';
-  // errorMessage: string = '';
   data$ = combineLatest({
     isSubmitting: this.store.select(selectIsSubmittingLogin),
     errors: this.store.select(selectValidationErrors)
