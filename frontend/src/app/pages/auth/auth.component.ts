@@ -4,10 +4,10 @@ import { Router } from '@angular/router';
 import { LoginRequest } from '../../shared/models/login-request.interface';
 import { authActions } from '../../state/auth/auth.actions';
 import { Store } from '@ngrx/store';
-import { selectIsSubmittingLogin } from '../../state/auth/auth.selectors';
+import { selectIsSubmittingLogin, selectValidationErrors } from '../../state/auth/auth.selectors';
 import { CommonModule } from '@angular/common';
 import { AuthState } from '../../state/auth/auth.reducer';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { PersistanceService } from '../../shared/services/persistance.service';
 import { MeasurementState } from '../../state/measurements/measurement.reducer';
 
@@ -27,8 +27,10 @@ export class AuthComponent implements OnInit {
   // Form state
   // public mailErrorMessage: string = '';
   // errorMessage: string = '';
-  isSubmitting$: Observable<boolean> = this.store.select(selectIsSubmittingLogin);
-
+  data$ = combineLatest({
+    isSubmitting: this.store.select(selectIsSubmittingLogin),
+    errors: this.store.select(selectValidationErrors)
+  })
   constructor(private fb: FormBuilder) { }
   ngOnInit() {
     // Navigate to dashboard if already logged in

@@ -1,4 +1,4 @@
-<section>
+<section *ngIf="data$ | async as data">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="auth-container">
 
     <div class="logo">
@@ -16,9 +16,12 @@
       <input type="password" formControlName="password">
 
     </div>
-    <button class="login-button" type="submit" [disabled]="(isSubmitting$ | async)">
-      <p *ngIf="!(isSubmitting$ | async)">log in</p>
-      <div *ngIf="(isSubmitting$ | async)" class="loader"></div>
+    @if(data.errors) {
+    <p class="validation-error">{{data.errors}}</p>
+    }
+    <button class="login-button" type="submit" [disabled]="data.isSubmitting">
+      <p *ngIf="!data.isSubmitting">log in</p>
+      <div *ngIf="data.isSubmitting" class="loader"></div>
     </button>
   </form>
 </section>

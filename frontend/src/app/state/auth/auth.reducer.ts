@@ -9,7 +9,7 @@ export interface AuthState {
   // error: string,
   // status: 'pending' | 'loading' | 'error' | 'success'
   isLoading: boolean,
-  validationErrors: BackendErrors | null
+  validationErrors: string[] | null
   // user: UserState;
 }
 

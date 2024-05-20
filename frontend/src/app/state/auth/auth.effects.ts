@@ -25,7 +25,8 @@ export const loginEffect = createEffect((
           return authActions.loginSuccess({ currentUser });
         }),
         catchError((errorResponse: HttpErrorResponse) => {
-          return of(authActions.loginFailure(errorResponse.error.errors))
+          // return of(authActions.loginFailure(errorResponse.error.errors))
+          return of(authActions.loginFailure({errors: errorResponse.error.errors}))
         })
       )
     })
@@ -61,7 +62,7 @@ export const logoutEffect = createEffect((
           return authActions.logoutSuccess();
         }),
         catchError((errorResponse: HttpErrorResponse) => {
-          return of(authActions.logoutFailure(errorResponse.error.errors))
+          return of(authActions.logoutFailure({errors: errorResponse.error.errors}))
         })
       )
     })

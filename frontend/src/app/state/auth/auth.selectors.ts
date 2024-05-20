@@ -12,4 +12,8 @@ export const selectIsSubmittingLogin = createSelector(
   (authState: AuthState) => authState.isSubmittingLogin
 )
 
+export const selectValidationErrors = createSelector(
+  selectAuthState,
+  (authState: AuthState) => authState.validationErrors
+)
 // export const selectIs

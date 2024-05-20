@@ -11,6 +11,7 @@ module.exports = {
         "primary-button": "#A1C398",
         "off-black-text": "#465143",
         "input-label-on-creamy-yellow":"#F6F5E0",
+        'errorRed': '#FF7777'
       }
     },
   },
