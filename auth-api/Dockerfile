@@ -9,6 +9,7 @@ RUN npm install
 COPY . .
 
 # Generate prisma code used by the /services and schema's
+RUN npx prisma db pull
 RUN npx prisma generate
 
 EXPOSE 3000

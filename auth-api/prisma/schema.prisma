@@ -20,3 +20,23 @@ model person {
   password       String           @db.VarChar
   active_session active_session[]
 }
+
+model measurement {
+  id         Int      @id @default(autoincrement())
+  topic_id   Int
+  value      Float
+  created_at DateTime @db.Timestamp(6)
+  topic      topic    @relation(fields: [topic_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model topic {
+  id          Int           @id @default(autoincrement())
+  country     String        @db.VarChar
+  city        String        @db.VarChar
+  building    String        @db.VarChar
+  space       String        @db.VarChar
+  sensor      String        @db.VarChar
+  measurement measurement[]
+
+  @@unique([country, city, building, space, sensor])
+}
