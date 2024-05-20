@@ -13,7 +13,7 @@ app.use("/measurements", measurementRoute)
 app.use("/topics", topicRoute)
 
 // console.log("Listening on port 3001")
-// app.listen("3001")
+app.listen("3001")
 
 function logEndpoint(req, res, next) {
   console.log(req.url)
