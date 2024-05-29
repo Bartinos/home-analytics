@@ -7,19 +7,6 @@ networks:
   tunneled-dev:
 
 services:
-  database:
-    image: postgres:16.2
-    
-    environment:
-      POSTGRES_PASSWORD: temp
-    volumes:
-      - ../database/data:/var/lib/postgresql/data
-      - ../database/db.sql:/docker-entrypoint-initdb.d/db.sql
-    networks:
-      - data-dev
-    restart: unless-stopped
-    ports:
-      - 9009:5432
 
   adminer:
     image: adminer
@@ -101,6 +88,20 @@ services:
     restart: unless-stopped
     networks:
      - tunneled-dev
+  
+  database:
+    image: postgres:16.2
+    
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ../database/data:/var/lib/postgresql/data
+      - ../database/db.sql:/docker-entrypoint-initdb.d/db.sql
+    networks:
+      - data-dev
+    restart: unless-stopped
+    ports:
+      - 9009:5432
 
   proxy-tunnel:
     image: cloudflare/cloudflared:latest

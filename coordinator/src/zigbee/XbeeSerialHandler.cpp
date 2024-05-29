@@ -15,14 +15,8 @@ bool XbeeSerialHandler::isFrameAvailable(){
 }
 
 XbeeReading XbeeSerialHandler::createReadingFromSerial(){
-  // byte receivedMac[8];
   byte analogMSB;
   byte analogLSB;
-
-  // if(Serial.available() >= ZIGBEE_FRAME_SIZE){
-  //   if(Serial.read() != ZIGBEE_START_BYTE) {
-  //     return 0;
-  //   }
 
   XbeeReading xbeeReading;
 
