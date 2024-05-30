@@ -19,10 +19,12 @@ services:
     image: eclipse-mosquitto:2.0.18
     ports:
       - 1883:1883
+      - 8883:8883
     volumes:
       - ../mqtt-broker/mosquitto/log:/mosquitto/log
       - ../mqtt-broker/mosquitto/data:/mosquitto/data
       - ../mqtt-broker/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ../mqtt-broker/mosquitto/certs:/mosquitto/certs
     networks:
       - tunneled-dev
     restart: unless-stopped
@@ -31,10 +33,13 @@ services:
     build:
       context: ../data-saver/
       dockerfile: ../data-saver/Dockerfile.dev
+    volumes:
+      - ../certs/ca.crt:/certs/ca.crt
     environment:
       - ACCESS_TOKEN=${ACCESS_TOKEN}
       - API_URL=${API_URL}
       - MQTT_BROKER_URL=${MQTT_BROKER_URL}
+      - MQTT_BROKER_TLS_URL=${MQTT_BROKER_TLS_URL}
     depends_on:
       - database
       - mqtt-broker
